@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="WinSetupPro.App.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="using:WinSetupPro.App.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:BooleanToBrushConverter x:Key="BoolToBrush" />
+    </Page.Resources>
+
+    <ScrollViewer Padding="24,20,24,32">
+        <StackPanel Spacing="16" MaxWidth="720">
+            <TextBlock Style="{StaticResource SectionTitle}" Text="{x:Bind ViewModel.Loc.Get('settings'), Mode=OneWay}" />
+
+            <Border Style="{StaticResource PremiumCard}">
+                <StackPanel Spacing="12">
+                    <TextBlock FontWeight="SemiBold" Text="{x:Bind ViewModel.Loc.Get('language'), Mode=OneWay}" />
+                    <ComboBox
+                        x:Name="LangBox"
+                        MinWidth="220"
+                        SelectionChanged="LangBox_SelectionChanged" />
+                    <TextBlock
+                        Margin="0,8,0,0"
+                        FontWeight="SemiBold"
+                        Text="{x:Bind ViewModel.Loc.Get('theme'), Mode=OneWay}" />
+                    <ComboBox
+                        x:Name="ThemeBox"
+                        MinWidth="220"
+                        SelectionChanged="ThemeBox_SelectionChanged" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource PremiumCard}">
+                <StackPanel Spacing="10">
+                    <TextBlock FontWeight="SemiBold" Text="{x:Bind ViewModel.Loc.Get('engines'), Mode=OneWay}" />
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <Ellipse
+                            Width="12"
+                            Height="12"
+                            Fill="{x:Bind ViewModel.WingetAvailable, Mode=OneWay, Converter={StaticResource BoolToBrush}}"
+                            VerticalAlignment="Center" />
+                        <TextBlock
+                            Text="{x:Bind ViewModel.WingetText, Mode=OneWay}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <Ellipse
+                            Width="12"
+                            Height="12"
+                            Fill="{x:Bind ViewModel.ScoopAvailable, Mode=OneWay, Converter={StaticResource BoolToBrush}}"
+                            VerticalAlignment="Center" />
+                        <TextBlock
+                            Text="{x:Bind ViewModel.ScoopText, Mode=OneWay}"
+                            VerticalAlignment="Center" />
+                        <Button
+                            Command="{x:Bind ViewModel.InstallScoopCommand}"
+                            Content="{x:Bind ViewModel.Loc.Get('installScoop'), Mode=OneWay}"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource PremiumCard}">
+                <StackPanel Spacing="8">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button
+                            MinWidth="150"
+                            Click="Export_Click"
+                            Content="{x:Bind ViewModel.Loc.Get('exportPreset'), Mode=OneWay}" />
+                        <Button
+                            MinWidth="150"
+                            Click="Import_Click"
+                            Content="{x:Bind ViewModel.Loc.Get('importPreset'), Mode=OneWay}" />
+                        <Button
+                            MinWidth="220"
+                            Click="Restore_Click"
+                            Content="{x:Bind ViewModel.Loc.Get('createRestore'), Mode=OneWay}" />
+                    </StackPanel>
+                    <TextBlock
+                        Opacity="0.8"
+                        Text="{x:Bind ViewModel.StatusLine, Mode=OneWay}"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
+
+            <Grid ColumnSpacing="14">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Border
+                    Width="56"
+                    Height="56"
+                    Background="White"
+                    CornerRadius="14">
+                    <Image
+                        Width="44"
+                        Height="44"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Source="ms-appx:///Assets/AppLogo.png"
+                        Stretch="Uniform" />
+                </Border>
+                <TextBlock
+                    Grid.Column="1"
+                    Opacity="0.7"
+                    Text="{x:Bind ViewModel.Loc.Get('about'), Mode=OneWay}"
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Center" />
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

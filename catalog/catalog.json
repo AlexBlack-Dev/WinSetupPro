@@ -1,0 +1,2049 @@
+{
+  "apps": [
+    {
+      "id": "7zip",
+      "nameEn": "7-Zip",
+      "nameRu": "7-Zip",
+      "descriptionEn": "Free archiver. You have 26.00.",
+      "descriptionRu": "Бесплатный архиватор. У тебя стоит 26.00.",
+      "wingetId": "7zip.7zip",
+      "category": "Essential",
+      "profiles": [
+        "base"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/7zip.svg"
+    },
+    {
+      "id": "powertoys",
+      "nameEn": "PowerToys",
+      "nameRu": "PowerToys",
+      "descriptionEn": "Microsoft power-user toolkit: FancyZones, PowerRename, Run.",
+      "descriptionRu": "Мастхэв от Microsoft: зоны окон, переименование, лаунчер.",
+      "wingetId": "Microsoft.PowerToys",
+      "category": "Essential",
+      "profiles": [
+        "base",
+        "office"
+      ],
+      "isPopular": true,
+      "iconGlyph": ""
+    },
+    {
+      "id": "everything",
+      "nameEn": "Everything",
+      "nameRu": "Everything",
+      "descriptionEn": "Instant file search.",
+      "descriptionRu": "Мгновенный поиск файлов.",
+      "wingetId": "voidtools.Everything",
+      "category": "Essential",
+      "profiles": [
+        "base"
+      ],
+      "isPopular": true,
+      "iconGlyph": ""
+    },
+    {
+      "id": "notepadpp",
+      "nameEn": "Notepad++",
+      "nameRu": "Notepad++",
+      "descriptionEn": "Fast text editor.",
+      "descriptionRu": "Быстрый текстовый редактор.",
+      "wingetId": "Notepad++.Notepad++",
+      "category": "Essential",
+      "profiles": [
+        "base",
+        "web",
+        "dotnet",
+        "python"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/notepadpp.svg"
+    },
+    {
+      "id": "terminal",
+      "nameEn": "Windows Terminal",
+      "nameRu": "Терминал Windows",
+      "descriptionEn": "Modern terminal. You have 1.24.",
+      "descriptionRu": "Современный терминал. У тебя 1.24.",
+      "wingetId": "Microsoft.WindowsTerminal",
+      "category": "Essential",
+      "profiles": [
+        "base",
+        "web",
+        "dotnet",
+        "python",
+        "unity"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/terminal.svg"
+    },
+    {
+      "id": "powershell7",
+      "nameEn": "PowerShell 7",
+      "nameRu": "PowerShell 7",
+      "descriptionEn": "Cross-platform shell.",
+      "descriptionRu": "Кроссплатформенная оболочка.",
+      "wingetId": "Microsoft.PowerShell",
+      "category": "Runtime",
+      "profiles": [
+        "base",
+        "dotnet"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/powershell7.svg"
+    },
+    {
+      "id": "vcredist",
+      "nameEn": "Visual C++ Redist",
+      "nameRu": "Visual C++ Redist",
+      "descriptionEn": "Runtime libs games and apps need.",
+      "descriptionRu": "Библиотеки, нужные играм и программам.",
+      "wingetId": "Microsoft.VCRedist.2015+.x64",
+      "category": "Runtime",
+      "profiles": [
+        "base",
+        "gaming"
+      ],
+      "isPopular": true,
+      "iconGlyph": ""
+    },
+    {
+      "id": "directx",
+      "nameEn": "DirectX Runtime",
+      "nameRu": "DirectX",
+      "descriptionEn": "Gaming graphics runtime.",
+      "descriptionRu": "Графический рантайм для игр.",
+      "wingetId": "Microsoft.DirectX",
+      "category": "Runtime",
+      "profiles": [
+        "base",
+        "gaming",
+        "unity"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "dotnet-sdk",
+      "nameEn": ".NET 10 SDK",
+      "nameRu": ".NET 10 SDK",
+      "descriptionEn": "Build .NET apps. You have 10.0.401.",
+      "descriptionRu": "Сборка .NET-приложений. У тебя 10.0.401.",
+      "wingetId": "Microsoft.DotNet.SDK.10",
+      "category": "Runtime",
+      "profiles": [
+        "dotnet",
+        "unity"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/dotnet-sdk.svg"
+    },
+    {
+      "id": "wiztree",
+      "nameEn": "WizTree",
+      "nameRu": "WizTree",
+      "descriptionEn": "Find what eats your disk in seconds.",
+      "descriptionRu": "Что съело диск — за секунды.",
+      "wingetId": "AntibodySoftware.WizTree",
+      "category": "Utilities",
+      "profiles": [
+        "base"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "sharex",
+      "nameEn": "ShareX",
+      "nameRu": "ShareX",
+      "descriptionEn": "Screenshots, GIFs, uploads.",
+      "descriptionRu": "Скриншоты, гифки, заливка.",
+      "wingetId": "ShareX.ShareX",
+      "category": "Utilities",
+      "profiles": [
+        "base",
+        "office"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/sharex.svg"
+    },
+    {
+      "id": "revo",
+      "nameEn": "Revo Uninstaller",
+      "nameRu": "Revo Uninstaller",
+      "descriptionEn": "Clean uninstall without leftovers. You have 2.7.0.",
+      "descriptionRu": "Чистое удаление без мусора. У тебя 2.7.0.",
+      "wingetId": "RevoUninstaller.RevoUninstaller",
+      "category": "Utilities",
+      "profiles": [
+        "base"
+      ],
+      "isPopular": true,
+      "iconGlyph": ""
+    },
+    {
+      "id": "windhawk",
+      "nameEn": "Windhawk",
+      "nameRu": "Windhawk",
+      "descriptionEn": "Windows customization mods. You have 1.7.3.",
+      "descriptionRu": "Кастомизация Windows. У тебя 1.7.3.",
+      "wingetId": "RamenSoftware.Windhawk",
+      "category": "Utilities",
+      "profiles": [
+        "base"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "eartrumpet",
+      "nameEn": "EarTrumpet",
+      "nameRu": "EarTrumpet",
+      "descriptionEn": "Per-app volume mixer.",
+      "descriptionRu": "Громкость для каждого приложения.",
+      "wingetId": "File-New-Project.EarTrumpet",
+      "category": "Utilities",
+      "profiles": [
+        "base",
+        "gaming"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "lively",
+      "nameEn": "Lively Wallpaper",
+      "nameRu": "Lively Wallpaper",
+      "descriptionEn": "Free live wallpapers (you use Wallpaper Engine).",
+      "descriptionRu": "Бесплатные живые обои (у тебя Wallpaper Engine).",
+      "wingetId": "rocksdanister.Lively",
+      "category": "Utilities",
+      "profiles": [
+        "gaming"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "chrome",
+      "nameEn": "Google Chrome",
+      "nameRu": "Google Chrome",
+      "descriptionEn": "Most popular browser, devtools standard.",
+      "descriptionRu": "Самый популярный браузер, стандарт devtools.",
+      "wingetId": "Google.Chrome",
+      "category": "Browser",
+      "profiles": [
+        "base",
+        "web",
+        "office"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/chrome.svg"
+    },
+    {
+      "id": "firefox",
+      "nameEn": "Firefox",
+      "nameRu": "Firefox",
+      "descriptionEn": "Private browser. You have 157.",
+      "descriptionRu": "Приватный браузер. У тебя 157.",
+      "wingetId": "Mozilla.Firefox",
+      "category": "Browser",
+      "profiles": [
+        "base",
+        "web"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/firefox.svg"
+    },
+    {
+      "id": "brave",
+      "nameEn": "Brave",
+      "nameRu": "Brave",
+      "descriptionEn": "Ad-block built in, Chromium based.",
+      "descriptionRu": "Блокировка рекламы из коробки.",
+      "wingetId": "Brave.Brave",
+      "category": "Browser",
+      "profiles": [
+        "base"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/brave.svg"
+    },
+    {
+      "id": "arc",
+      "nameEn": "Arc Browser",
+      "nameRu": "Arc Browser",
+      "descriptionEn": "Modern tab-space browser.",
+      "descriptionRu": "Современный браузер с пространствами.",
+      "wingetId": "TheBrowserCompany.Arc",
+      "category": "Browser",
+      "profiles": [
+        "web"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/arc.svg"
+    },
+    {
+      "id": "git",
+      "nameEn": "Git",
+      "nameRu": "Git",
+      "descriptionEn": "Version control. You have 2.54.",
+      "descriptionRu": "Контроль версий. У тебя 2.54.",
+      "wingetId": "Git.Git",
+      "category": "DevCore",
+      "profiles": [
+        "web",
+        "dotnet",
+        "python",
+        "unity"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/git.svg"
+    },
+    {
+      "id": "git-lfs",
+      "nameEn": "Git LFS",
+      "nameRu": "Git LFS",
+      "descriptionEn": "Large files in git — must-have for Unity.",
+      "descriptionRu": "Большие файлы в git — обязательно для Unity.",
+      "wingetId": "GitHub.GitLFS",
+      "category": "DevCore",
+      "profiles": [
+        "unity"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "gh-cli",
+      "nameEn": "GitHub CLI",
+      "nameRu": "GitHub CLI",
+      "descriptionEn": "PRs and repos from terminal.",
+      "descriptionRu": "PR и репозитории из терминала.",
+      "wingetId": "GitHub.cli",
+      "scoopName": "gh",
+      "preferredEngine": "Winget",
+      "category": "DevCore",
+      "profiles": [
+        "web",
+        "dotnet"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/gh-cli.svg"
+    },
+    {
+      "id": "lazygit",
+      "nameEn": "LazyGit",
+      "nameRu": "LazyGit",
+      "descriptionEn": "Terminal UI for git.",
+      "descriptionRu": "Терминальный интерфейс для git.",
+      "wingetId": "JesseDuffield.lazygit",
+      "scoopName": "lazygit",
+      "preferredEngine": "Winget",
+      "category": "DevCore",
+      "profiles": [
+        "web",
+        "dotnet"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "github-desktop",
+      "nameEn": "GitHub Desktop",
+      "nameRu": "GitHub Desktop",
+      "descriptionEn": "Simple git GUI.",
+      "descriptionRu": "Простой GUI для git.",
+      "wingetId": "GitHub.GitHubDesktop",
+      "category": "DevCore",
+      "profiles": [
+        "unity",
+        "python"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/github-desktop.svg"
+    },
+    {
+      "id": "vscode",
+      "nameEn": "VS Code",
+      "nameRu": "VS Code",
+      "descriptionEn": "Light editor. You have 1.133.",
+      "descriptionRu": "Легкий редактор. У тебя 1.133.",
+      "wingetId": "Microsoft.VisualStudioCode",
+      "category": "DevCore",
+      "profiles": [
+        "web",
+        "dotnet",
+        "python",
+        "unity"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/vscode.svg"
+    },
+    {
+      "id": "vs-community",
+      "nameEn": "Visual Studio 2026 Community",
+      "nameRu": "Visual Studio 2026 Community",
+      "descriptionEn": "Full IDE. You have 18.10.",
+      "descriptionRu": "Полная IDE. У тебя 18.10.",
+      "wingetId": "Microsoft.VisualStudio.Community",
+      "category": "DevCore",
+      "profiles": [
+        "dotnet",
+        "unity"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/vs-community.svg"
+    },
+    {
+      "id": "jetbrains-toolbox",
+      "nameEn": "JetBrains Toolbox",
+      "nameRu": "JetBrains Toolbox",
+      "descriptionEn": "Rider, PyCharm, WebStorm manager.",
+      "descriptionRu": "Менеджер Rider, PyCharm, WebStorm.",
+      "wingetId": "JetBrains.Toolbox",
+      "category": "DevCore",
+      "profiles": [
+        "web",
+        "dotnet",
+        "python"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/jetbrains-toolbox.svg"
+    },
+    {
+      "id": "neovim",
+      "nameEn": "Neovim",
+      "nameRu": "Neovim",
+      "descriptionEn": "Modal terminal editor.",
+      "descriptionRu": "Модальный терминальный редактор.",
+      "wingetId": "Neovim.Neovim",
+      "scoopName": "neovim",
+      "preferredEngine": "Winget",
+      "category": "DevCore",
+      "profiles": [
+        "web"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/neovim.svg"
+    },
+    {
+      "id": "sublime",
+      "nameEn": "Sublime Text",
+      "nameRu": "Sublime Text",
+      "descriptionEn": "Blazing fast editor.",
+      "descriptionRu": "Молниеносный редактор.",
+      "wingetId": "SublimeHQ.SublimeText",
+      "category": "DevCore",
+      "profiles": [
+        "web"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/sublime.svg"
+    },
+    {
+      "id": "cmake",
+      "nameEn": "CMake",
+      "nameRu": "CMake",
+      "descriptionEn": "C++ build system. You have 4.3.2.",
+      "descriptionRu": "Сборка C++. У тебя 4.3.2.",
+      "wingetId": "Kitware.CMake",
+      "category": "DevCore",
+      "profiles": [
+        "dotnet",
+        "unity"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/cmake.svg"
+    },
+    {
+      "id": "ninja",
+      "nameEn": "Ninja",
+      "nameRu": "Ninja",
+      "descriptionEn": "Tiny fast build tool.",
+      "descriptionRu": "Крошечный быстрый сборщик.",
+      "wingetId": "Ninja-build.Ninja",
+      "scoopName": "ninja",
+      "preferredEngine": "Scoop",
+      "category": "DevCore",
+      "profiles": [
+        "dotnet"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "llvm",
+      "nameEn": "LLVM",
+      "nameRu": "LLVM",
+      "descriptionEn": "Clang compiler toolchain.",
+      "descriptionRu": "Тулчейн компилятора Clang.",
+      "wingetId": "LLVM.LLVM",
+      "category": "DevCore",
+      "profiles": [
+        "dotnet"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/llvm.svg"
+    },
+    {
+      "id": "docker",
+      "nameEn": "Docker Desktop",
+      "nameRu": "Docker Desktop",
+      "descriptionEn": "Containers. You have 4.82.",
+      "descriptionRu": "Контейнеры. У тебя 4.82.",
+      "wingetId": "Docker.DockerDesktop",
+      "category": "DevCore",
+      "profiles": [
+        "web",
+        "dotnet",
+        "python"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/docker.svg"
+    },
+    {
+      "id": "wsl",
+      "nameEn": "WSL 2",
+      "nameRu": "WSL 2",
+      "descriptionEn": "Linux inside Windows. You have 2.7.",
+      "descriptionRu": "Linux внутри Windows. У тебя 2.7.",
+      "wingetId": "Microsoft.WSL",
+      "category": "DevCore",
+      "profiles": [
+        "web",
+        "python",
+        "dotnet"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/wsl.svg"
+    },
+    {
+      "id": "winscp",
+      "nameEn": "WinSCP",
+      "nameRu": "WinSCP",
+      "descriptionEn": "SFTP/SCP client. You have 6.5.6.",
+      "descriptionRu": "SFTP-клиент. У тебя 6.5.6.",
+      "wingetId": "WinSCP.WinSCP",
+      "category": "DevCore",
+      "profiles": [
+        "web",
+        "dotnet"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "putty",
+      "nameEn": "PuTTY",
+      "nameRu": "PuTTY",
+      "descriptionEn": "SSH client classic.",
+      "descriptionRu": "Классический SSH-клиент.",
+      "wingetId": "PuTTY.PuTTY",
+      "category": "DevCore",
+      "profiles": [
+        "web",
+        "dotnet"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "postman",
+      "nameEn": "Postman",
+      "nameRu": "Postman",
+      "descriptionEn": "API testing platform.",
+      "descriptionRu": "Платформа тестирования API.",
+      "wingetId": "Postman.Postman",
+      "category": "DevCore",
+      "profiles": [
+        "web",
+        "dotnet"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/postman.svg"
+    },
+    {
+      "id": "bruno",
+      "nameEn": "Bruno",
+      "nameRu": "Bruno",
+      "descriptionEn": "Offline open-source API client.",
+      "descriptionRu": "Офлайн open-source API-клиент.",
+      "wingetId": "Bruno.Bruno",
+      "category": "DevCore",
+      "profiles": [
+        "web",
+        "dotnet"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/bruno.svg"
+    },
+    {
+      "id": "dbeaver",
+      "nameEn": "DBeaver",
+      "nameRu": "DBeaver",
+      "descriptionEn": "Universal DB manager.",
+      "descriptionRu": "Универсальный менеджер БД.",
+      "wingetId": "dbeaver.dbeaver",
+      "category": "Backend",
+      "profiles": [
+        "dotnet",
+        "python",
+        "web"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/dbeaver.svg"
+    },
+    {
+      "id": "sqlitebrowser",
+      "nameEn": "DB Browser (SQLite)",
+      "nameRu": "DB Browser (SQLite)",
+      "descriptionEn": "Light SQLite editor.",
+      "descriptionRu": "Легкий редактор SQLite.",
+      "wingetId": "DBBrowserForSQLite.DBBrowserForSQLite",
+      "category": "Backend",
+      "profiles": [
+        "dotnet",
+        "python"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/sqlitebrowser.svg"
+    },
+    {
+      "id": "ssms",
+      "nameEn": "SQL Server Management Studio",
+      "nameRu": "SQL Server Management Studio",
+      "descriptionEn": "MS SQL admin (you have LocalDB 2025).",
+      "descriptionRu": "Администрирование MS SQL (у тебя LocalDB 2025).",
+      "wingetId": "Microsoft.SQLServerManagementStudio",
+      "category": "Backend",
+      "profiles": [
+        "dotnet"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/ssms.svg"
+    },
+    {
+      "id": "linqpad",
+      "nameEn": "LINQPad 8",
+      "nameRu": "LINQPad 8",
+      "descriptionEn": ".NET scratchpad.",
+      "descriptionRu": "Песочница для .NET.",
+      "wingetId": "LINQPad.LINQPad.8",
+      "category": "Backend",
+      "profiles": [
+        "dotnet"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "nodejs",
+      "nameEn": "Node.js LTS",
+      "nameRu": "Node.js LTS",
+      "descriptionEn": "JS runtime. You have 24.14 (MSI).",
+      "descriptionRu": "JS-рантайм. У тебя 24.14.",
+      "wingetId": "OpenJS.NodeJS",
+      "category": "Frontend",
+      "profiles": [
+        "web"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/nodejs.svg"
+    },
+    {
+      "id": "bun",
+      "nameEn": "Bun",
+      "nameRu": "Bun",
+      "descriptionEn": "Fast JS runtime and bundler.",
+      "descriptionRu": "Быстрый JS-рантайм.",
+      "wingetId": "Oven-sh.Bun",
+      "category": "Frontend",
+      "profiles": [
+        "web"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/bun.svg"
+    },
+    {
+      "id": "deno",
+      "nameEn": "Deno",
+      "nameRu": "Deno",
+      "descriptionEn": "Secure JS/TS runtime.",
+      "descriptionRu": "Безопасный JS/TS-рантайм.",
+      "wingetId": "DenoLand.Deno",
+      "category": "Frontend",
+      "profiles": [
+        "web"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/deno.svg"
+    },
+    {
+      "id": "volta",
+      "nameEn": "Volta",
+      "nameRu": "Volta",
+      "descriptionEn": "Node version manager.",
+      "descriptionRu": "Менеджер версий Node.",
+      "wingetId": "Volta.Volta",
+      "category": "Frontend",
+      "profiles": [
+        "web"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "figma",
+      "nameEn": "Figma",
+      "nameRu": "Figma",
+      "descriptionEn": "UI design tool.",
+      "descriptionRu": "Инструмент дизайна интерфейсов.",
+      "wingetId": "Figma.Figma",
+      "category": "Frontend",
+      "profiles": [
+        "web"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/figma.svg"
+    },
+    {
+      "id": "python314",
+      "nameEn": "Python 3.14",
+      "nameRu": "Python 3.14",
+      "descriptionEn": "You have 3.13 + 3.14.",
+      "descriptionRu": "У тебя стоят 3.13 и 3.14.",
+      "wingetId": "Python.Python.3.14",
+      "category": "PythonAi",
+      "profiles": [
+        "python"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/python314.svg"
+    },
+    {
+      "id": "uv",
+      "nameEn": "uv",
+      "nameRu": "uv",
+      "descriptionEn": "Blazing Python package manager.",
+      "descriptionRu": "Молниеносный менеджер Python-пакетов.",
+      "wingetId": "astral-sh.uv",
+      "scoopName": "uv",
+      "preferredEngine": "Winget",
+      "category": "PythonAi",
+      "profiles": [
+        "python"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/uv.svg"
+    },
+    {
+      "id": "ruff",
+      "nameEn": "Ruff",
+      "nameRu": "Ruff",
+      "descriptionEn": "Fast Python linter.",
+      "descriptionRu": "Быстрый линтер Python.",
+      "wingetId": "astral-sh.Ruff",
+      "scoopName": "ruff",
+      "preferredEngine": "Winget",
+      "category": "PythonAi",
+      "profiles": [
+        "python"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/ruff.svg"
+    },
+    {
+      "id": "pycharm",
+      "nameEn": "PyCharm Community",
+      "nameRu": "PyCharm Community",
+      "descriptionEn": "Python IDE by JetBrains.",
+      "descriptionRu": "Python-IDE от JetBrains.",
+      "wingetId": "JetBrains.PyCharm.Community",
+      "category": "PythonAi",
+      "profiles": [
+        "python"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/pycharm.svg"
+    },
+    {
+      "id": "anaconda",
+      "nameEn": "Anaconda 3",
+      "nameRu": "Anaconda 3",
+      "descriptionEn": "Data-science Python distro.",
+      "descriptionRu": "Python-дистрибутив для data science.",
+      "wingetId": "Anaconda.Anaconda3",
+      "category": "PythonAi",
+      "profiles": [
+        "python"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/anaconda.svg"
+    },
+    {
+      "id": "ollama",
+      "nameEn": "Ollama",
+      "nameRu": "Ollama",
+      "descriptionEn": "Local LLMs. You have 0.32.",
+      "descriptionRu": "Локальные LLM. У тебя 0.32.",
+      "wingetId": "Ollama.Ollama",
+      "category": "PythonAi",
+      "profiles": [
+        "python"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/ollama.svg"
+    },
+    {
+      "id": "lmstudio",
+      "nameEn": "LM Studio",
+      "nameRu": "LM Studio",
+      "descriptionEn": "Local LLM chat GUI.",
+      "descriptionRu": "GUI-чат для локальных LLM.",
+      "wingetId": "LMStudio.LMStudio",
+      "category": "PythonAi",
+      "profiles": [
+        "python"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/lmstudio.svg"
+    },
+    {
+      "id": "jan",
+      "nameEn": "Jan",
+      "nameRu": "Jan",
+      "descriptionEn": "Open-source local AI chat.",
+      "descriptionRu": "Open-source чат локального ИИ.",
+      "wingetId": "Jan.Jan",
+      "category": "PythonAi",
+      "profiles": [
+        "python"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "jdk21",
+      "nameEn": "Java JDK 21",
+      "nameRu": "Java JDK 21",
+      "descriptionEn": "You have Oracle 21.0.9.",
+      "descriptionRu": "У тебя Oracle 21.0.9.",
+      "wingetId": "Oracle.JDK.21",
+      "category": "Backend",
+      "profiles": [
+        "dotnet"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/jdk21.svg"
+    },
+    {
+      "id": "go",
+      "nameEn": "Go",
+      "nameRu": "Go",
+      "descriptionEn": "Backend language by Google.",
+      "descriptionRu": "Бэкенд-язык от Google.",
+      "wingetId": "GoLang.Go",
+      "category": "Backend",
+      "profiles": [
+        "dotnet",
+        "web"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/go.svg"
+    },
+    {
+      "id": "rustup",
+      "nameEn": "Rustup",
+      "nameRu": "Rustup",
+      "descriptionEn": "Rust toolchain manager.",
+      "descriptionRu": "Менеджер тулчейна Rust.",
+      "wingetId": "Rustlang.Rustup",
+      "category": "Backend",
+      "profiles": [
+        "dotnet"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/rustup.svg"
+    },
+    {
+      "id": "lua",
+      "nameEn": "Lua",
+      "nameRu": "Lua",
+      "descriptionEn": "Scripting language. You have 5.4.6.",
+      "descriptionRu": "Скриптовый язык. У тебя 5.4.6.",
+      "wingetId": "DEVCOM.Lua",
+      "category": "Backend",
+      "profiles": [
+        "unity"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/lua.svg"
+    },
+    {
+      "id": "zig",
+      "nameEn": "Zig",
+      "nameRu": "Zig",
+      "descriptionEn": "Systems language.",
+      "descriptionRu": "Системный язык.",
+      "wingetId": "zig.zig",
+      "scoopName": "zig",
+      "preferredEngine": "Winget",
+      "category": "Backend",
+      "profiles": [],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/zig.svg"
+    },
+    {
+      "id": "ruby",
+      "nameEn": "Ruby (Scoop)",
+      "nameRu": "Ruby (Scoop)",
+      "descriptionEn": "User-scope install, no admin.",
+      "descriptionRu": "Установка без админа.",
+      "scoopName": "ruby",
+      "preferredEngine": "Scoop",
+      "category": "Backend",
+      "profiles": [],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/ruby.svg"
+    },
+    {
+      "id": "php",
+      "nameEn": "PHP (Scoop)",
+      "nameRu": "PHP (Scoop)",
+      "descriptionEn": "User-scope install, no admin.",
+      "descriptionRu": "Установка без админа.",
+      "scoopName": "php",
+      "preferredEngine": "Scoop",
+      "category": "Backend",
+      "profiles": [
+        "web"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/php.svg"
+    },
+    {
+      "id": "starship",
+      "nameEn": "Starship",
+      "nameRu": "Starship",
+      "descriptionEn": "Pretty cross-shell prompt.",
+      "descriptionRu": "Красивый промпт для терминала.",
+      "wingetId": "Starship.Starship",
+      "scoopName": "starship",
+      "preferredEngine": "Scoop",
+      "category": "DevCore",
+      "profiles": [
+        "web",
+        "dotnet",
+        "python"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/starship.svg"
+    },
+    {
+      "id": "ohmyposh",
+      "nameEn": "Oh My Posh",
+      "nameRu": "Oh My Posh",
+      "descriptionEn": "Prompt themes engine.",
+      "descriptionRu": "Движок тем промпта.",
+      "wingetId": "JanDeDobbeleer.OhMyPosh",
+      "scoopName": "oh-my-posh",
+      "preferredEngine": "Winget",
+      "category": "DevCore",
+      "profiles": [
+        "web"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "ripgrep",
+      "nameEn": "ripgrep (Scoop)",
+      "nameRu": "ripgrep (Scoop)",
+      "descriptionEn": "Ultra-fast code search.",
+      "descriptionRu": "Сверхбыстрый поиск по коду.",
+      "wingetId": "BurntSushi.ripgrep.MSVC",
+      "scoopName": "ripgrep",
+      "preferredEngine": "Scoop",
+      "category": "DevCore",
+      "profiles": [
+        "web",
+        "dotnet",
+        "python"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "fd",
+      "nameEn": "fd (Scoop)",
+      "nameRu": "fd (Scoop)",
+      "descriptionEn": "Modern find replacement.",
+      "descriptionRu": "Современная замена find.",
+      "wingetId": "sharkdp.fd",
+      "scoopName": "fd",
+      "preferredEngine": "Scoop",
+      "category": "DevCore",
+      "profiles": [
+        "web"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "fzf",
+      "nameEn": "fzf (Scoop)",
+      "nameRu": "fzf (Scoop)",
+      "descriptionEn": "Fuzzy finder.",
+      "descriptionRu": "Нечеткий поиск.",
+      "wingetId": "junegunn.fzf",
+      "scoopName": "fzf",
+      "preferredEngine": "Scoop",
+      "category": "DevCore",
+      "profiles": [
+        "web"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "jq",
+      "nameEn": "jq (Scoop)",
+      "nameRu": "jq (Scoop)",
+      "descriptionEn": "JSON in terminal.",
+      "descriptionRu": "JSON в терминале.",
+      "wingetId": "jqlang.jq",
+      "scoopName": "jq",
+      "preferredEngine": "Scoop",
+      "category": "DevCore",
+      "profiles": [
+        "web",
+        "dotnet"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "yq",
+      "nameEn": "yq (Scoop)",
+      "nameRu": "yq (Scoop)",
+      "descriptionEn": "YAML in terminal.",
+      "descriptionRu": "YAML в терминале.",
+      "wingetId": "MikeFarah.yq",
+      "scoopName": "yq",
+      "preferredEngine": "Scoop",
+      "category": "DevCore",
+      "profiles": [
+        "web"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "bat",
+      "nameEn": "bat (Scoop)",
+      "nameRu": "bat (Scoop)",
+      "descriptionEn": "cat with syntax highlight.",
+      "descriptionRu": "cat с подсветкой синтаксиса.",
+      "wingetId": "sharkdp.bat",
+      "scoopName": "bat",
+      "preferredEngine": "Scoop",
+      "category": "DevCore",
+      "profiles": [
+        "web"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "eza",
+      "nameEn": "eza (Scoop)",
+      "nameRu": "eza (Scoop)",
+      "descriptionEn": "Modern ls replacement.",
+      "descriptionRu": "Современная замена ls.",
+      "wingetId": "eza-community.eza",
+      "scoopName": "eza",
+      "preferredEngine": "Scoop",
+      "category": "DevCore",
+      "profiles": [
+        "web"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "zoxide",
+      "nameEn": "zoxide (Scoop)",
+      "nameRu": "zoxide (Scoop)",
+      "descriptionEn": "Smarter cd.",
+      "descriptionRu": "Умный cd.",
+      "wingetId": "ajeetdsouza.zoxide",
+      "scoopName": "zoxide",
+      "preferredEngine": "Scoop",
+      "category": "DevCore",
+      "profiles": [
+        "web"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "delta",
+      "nameEn": "delta (Scoop)",
+      "nameRu": "delta (Scoop)",
+      "descriptionEn": "Pretty git diffs.",
+      "descriptionRu": "Красивые git-диффы.",
+      "wingetId": "dandavison.delta",
+      "scoopName": "delta",
+      "preferredEngine": "Scoop",
+      "category": "DevCore",
+      "profiles": [
+        "web",
+        "dotnet"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "bottom",
+      "nameEn": "bottom (Scoop)",
+      "nameRu": "bottom (Scoop)",
+      "descriptionEn": "System monitor in terminal.",
+      "descriptionRu": "Мониторинг системы в терминале.",
+      "wingetId": "ClementTsang.bottom",
+      "scoopName": "bottom",
+      "preferredEngine": "Scoop",
+      "category": "DevCore",
+      "profiles": [],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "wezterm",
+      "nameEn": "WezTerm",
+      "nameRu": "WezTerm",
+      "descriptionEn": "GPU terminal + multiplexing.",
+      "descriptionRu": "GPU-терминал с мультиплексором.",
+      "wingetId": "wez.wezterm",
+      "category": "DevCore",
+      "profiles": [],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/wezterm.svg"
+    },
+    {
+      "id": "alacritty",
+      "nameEn": "Alacritty",
+      "nameRu": "Alacritty",
+      "descriptionEn": "Minimal GPU terminal.",
+      "descriptionRu": "Минималистичный GPU-терминал.",
+      "wingetId": "Alacritty.Alacritty",
+      "category": "DevCore",
+      "profiles": [],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/alacritty.svg"
+    },
+    {
+      "id": "unity-hub",
+      "nameEn": "Unity Hub",
+      "nameRu": "Unity Hub",
+      "descriptionEn": "You have 3.22.2.",
+      "descriptionRu": "У тебя 3.22.2.",
+      "wingetId": "Unity.UnityHub",
+      "category": "Gamedev",
+      "profiles": [
+        "unity"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/unity-hub.svg"
+    },
+    {
+      "id": "unity6000",
+      "nameEn": "Unity 6000 LTS",
+      "nameRu": "Unity 6000 LTS",
+      "descriptionEn": "You have 6000.5.2f1.",
+      "descriptionRu": "У тебя 6000.5.2f1.",
+      "wingetId": "Unity.Unity.6000",
+      "category": "Gamedev",
+      "profiles": [
+        "unity"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/unity6000.svg"
+    },
+    {
+      "id": "godot",
+      "nameEn": "Godot",
+      "nameRu": "Godot",
+      "descriptionEn": "Free open-source engine.",
+      "descriptionRu": "Бесплатный open-source движок.",
+      "wingetId": "GodotEngine.GodotEngine",
+      "category": "Gamedev",
+      "profiles": [
+        "unity"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/godot.svg"
+    },
+    {
+      "id": "blender",
+      "nameEn": "Blender",
+      "nameRu": "Blender",
+      "descriptionEn": "3D suite. You have 5.1.",
+      "descriptionRu": "3D-пакет. У тебя 5.1.",
+      "wingetId": "BlenderFoundation.Blender",
+      "category": "Design3D",
+      "profiles": [
+        "unity"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/blender.svg"
+    },
+    {
+      "id": "gimp",
+      "nameEn": "GIMP",
+      "nameRu": "GIMP",
+      "descriptionEn": "Free image editor.",
+      "descriptionRu": "Бесплатный растровый редактор.",
+      "wingetId": "GIMP.GIMP",
+      "category": "Design3D",
+      "profiles": [
+        "unity"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/gimp.svg"
+    },
+    {
+      "id": "inkscape",
+      "nameEn": "Inkscape",
+      "nameRu": "Inkscape",
+      "descriptionEn": "Free vector editor.",
+      "descriptionRu": "Бесплатный векторный редактор.",
+      "wingetId": "Inkscape.Inkscape",
+      "category": "Design3D",
+      "profiles": [
+        "unity"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/inkscape.svg"
+    },
+    {
+      "id": "libresprite",
+      "nameEn": "LibreSprite",
+      "nameRu": "LibreSprite",
+      "descriptionEn": "Free pixel-art editor.",
+      "descriptionRu": "Бесплатный пиксель-арт редактор.",
+      "wingetId": "LibreSprite.LibreSprite",
+      "category": "Gamedev",
+      "profiles": [
+        "unity"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "freecad",
+      "nameEn": "FreeCAD",
+      "nameRu": "FreeCAD",
+      "descriptionEn": "Parametric 3D CAD.",
+      "descriptionRu": "Параметрический 3D CAD.",
+      "wingetId": "FreeCAD.FreeCAD",
+      "category": "Design3D",
+      "profiles": [],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/freecad.svg"
+    },
+    {
+      "id": "kicad",
+      "nameEn": "KiCad",
+      "nameRu": "KiCad",
+      "descriptionEn": "Electronics CAD.",
+      "descriptionRu": "CAD для электроники.",
+      "wingetId": "KiCad.KiCad",
+      "category": "Design3D",
+      "profiles": [],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/kicad.svg"
+    },
+    {
+      "id": "audacity",
+      "nameEn": "Audacity",
+      "nameRu": "Audacity",
+      "descriptionEn": "Audio editor.",
+      "descriptionRu": "Аудиоредактор.",
+      "wingetId": "Audacity.Audacity",
+      "category": "Media",
+      "profiles": [
+        "unity",
+        "gaming"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/audacity.svg"
+    },
+    {
+      "id": "libreoffice",
+      "nameEn": "LibreOffice",
+      "nameRu": "LibreOffice",
+      "descriptionEn": "Free office suite.",
+      "descriptionRu": "Бесплатный офис.",
+      "wingetId": "TheDocumentFoundation.LibreOffice",
+      "category": "Office",
+      "profiles": [
+        "office"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/libreoffice.svg"
+    },
+    {
+      "id": "onlyoffice",
+      "nameEn": "ONLYOFFICE",
+      "nameRu": "ONLYOFFICE",
+      "descriptionEn": "MS-compatible office.",
+      "descriptionRu": "Офис с совместимостью MS.",
+      "wingetId": "ONLYOFFICE.DesktopEditors",
+      "category": "Office",
+      "profiles": [
+        "office"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/onlyoffice.svg"
+    },
+    {
+      "id": "foxit",
+      "nameEn": "Foxit Reader",
+      "nameRu": "Foxit Reader",
+      "descriptionEn": "Fast PDF reader.",
+      "descriptionRu": "Быстрый PDF-ридер.",
+      "wingetId": "Foxit.FoxitReader",
+      "category": "Office",
+      "profiles": [
+        "office"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "sumatra",
+      "nameEn": "SumatraPDF",
+      "nameRu": "SumatraPDF",
+      "descriptionEn": "Tiny PDF reader.",
+      "descriptionRu": "Крошечный PDF-ридер.",
+      "wingetId": "SumatraPDF.SumatraPDF",
+      "category": "Office",
+      "profiles": [
+        "office"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "telegram",
+      "nameEn": "Telegram",
+      "nameRu": "Telegram",
+      "descriptionEn": "Messenger.",
+      "descriptionRu": "Мессенджер.",
+      "wingetId": "Telegram.TelegramDesktop",
+      "category": "Office",
+      "profiles": [
+        "office",
+        "base"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/telegram.svg"
+    },
+    {
+      "id": "whatsapp",
+      "nameEn": "WhatsApp",
+      "nameRu": "WhatsApp",
+      "descriptionEn": "Messenger.",
+      "descriptionRu": "Мессенджер.",
+      "wingetId": "WhatsApp.WhatsApp",
+      "category": "Office",
+      "profiles": [
+        "office"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/whatsapp.svg"
+    },
+    {
+      "id": "discord",
+      "nameEn": "Discord",
+      "nameRu": "Discord",
+      "descriptionEn": "Voice and communities. Installed (user).",
+      "descriptionRu": "Голос и сообщества. Уже стоит.",
+      "wingetId": "Discord.Discord",
+      "category": "Gaming",
+      "profiles": [
+        "gaming",
+        "unity"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/discord.svg"
+    },
+    {
+      "id": "zoom",
+      "nameEn": "Zoom",
+      "nameRu": "Zoom",
+      "descriptionEn": "Video calls.",
+      "descriptionRu": "Видеозвонки.",
+      "wingetId": "Zoom.Zoom",
+      "category": "Office",
+      "profiles": [
+        "office"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/zoom.svg"
+    },
+    {
+      "id": "thunderbird",
+      "nameEn": "Thunderbird",
+      "nameRu": "Thunderbird",
+      "descriptionEn": "Free mail client.",
+      "descriptionRu": "Бесплатный почтовый клиент.",
+      "wingetId": "Mozilla.Thunderbird",
+      "category": "Office",
+      "profiles": [
+        "office"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/thunderbird.svg"
+    },
+    {
+      "id": "obsidian",
+      "nameEn": "Obsidian",
+      "nameRu": "Obsidian",
+      "descriptionEn": "Markdown knowledge base.",
+      "descriptionRu": "База знаний в Markdown.",
+      "wingetId": "Obsidian.Obsidian",
+      "category": "Office",
+      "profiles": [
+        "office",
+        "web",
+        "python"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/obsidian.svg"
+    },
+    {
+      "id": "notion",
+      "nameEn": "Notion",
+      "nameRu": "Notion",
+      "descriptionEn": "Notes and docs.",
+      "descriptionRu": "Заметки и документы.",
+      "wingetId": "Notion.Notion",
+      "category": "Office",
+      "profiles": [
+        "office"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/notion.svg"
+    },
+    {
+      "id": "logseq",
+      "nameEn": "Logseq",
+      "nameRu": "Logseq",
+      "descriptionEn": "Open-source notes.",
+      "descriptionRu": "Open-source заметки.",
+      "wingetId": "Logseq.Logseq",
+      "category": "Office",
+      "profiles": [
+        "office"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/logseq.svg"
+    },
+    {
+      "id": "anydesk",
+      "nameEn": "AnyDesk",
+      "nameRu": "AnyDesk",
+      "descriptionEn": "Remote desktop.",
+      "descriptionRu": "Удаленный рабочий стол.",
+      "wingetId": "AnyDeskSoftwareGmbH.AnyDesk",
+      "category": "Office",
+      "profiles": [
+        "office"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/anydesk.svg"
+    },
+    {
+      "id": "rustdesk",
+      "nameEn": "RustDesk",
+      "nameRu": "RustDesk",
+      "descriptionEn": "Open-source remote desktop.",
+      "descriptionRu": "Open-source удаленный доступ.",
+      "wingetId": "RustDesk.RustDesk",
+      "category": "Office",
+      "profiles": [
+        "office"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/rustdesk.svg"
+    },
+    {
+      "id": "vlc",
+      "nameEn": "VLC",
+      "nameRu": "VLC",
+      "descriptionEn": "Plays everything. You have 3.0.23.",
+      "descriptionRu": "Играет всё. У тебя 3.0.23.",
+      "wingetId": "VideoLAN.VLC",
+      "category": "Media",
+      "profiles": [
+        "base",
+        "gaming"
+      ],
+      "isPopular": true,
+      "iconGlyph": ""
+    },
+    {
+      "id": "klite",
+      "nameEn": "K-Lite Codecs",
+      "nameRu": "K-Lite Codecs",
+      "descriptionEn": "Codec pack standard.",
+      "descriptionRu": "Пакет кодеков Standard.",
+      "wingetId": "CodecGuide.K-LiteCodecPack.Standard",
+      "category": "Media",
+      "profiles": [
+        "gaming"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "handbrake",
+      "nameEn": "HandBrake",
+      "nameRu": "HandBrake",
+      "descriptionEn": "Video transcoder.",
+      "descriptionRu": "Конвертер видео.",
+      "wingetId": "HandBrake.HandBrake",
+      "category": "Media",
+      "profiles": [
+        "gaming"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "staxrip",
+      "nameEn": "StaxRip",
+      "nameRu": "StaxRip",
+      "descriptionEn": "Advanced video encoder.",
+      "descriptionRu": "Продвинутый кодировщик видео.",
+      "wingetId": "staxrip.staxrip",
+      "category": "Media",
+      "profiles": [
+        "gaming"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "imageglass",
+      "nameEn": "ImageGlass",
+      "nameRu": "ImageGlass",
+      "descriptionEn": "Fast image viewer.",
+      "descriptionRu": "Быстрый просмотр изображений.",
+      "wingetId": "ImageGlass.ImageGlass",
+      "category": "Media",
+      "profiles": [
+        "base"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "obs",
+      "nameEn": "OBS Studio",
+      "nameRu": "OBS Studio",
+      "descriptionEn": "Streaming and recording. You have 32.",
+      "descriptionRu": "Стримы и запись. У тебя 32.",
+      "wingetId": "OBSProject.OBSStudio",
+      "category": "Media",
+      "profiles": [
+        "gaming",
+        "unity"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/obs.svg"
+    },
+    {
+      "id": "steam",
+      "nameEn": "Steam",
+      "nameRu": "Steam",
+      "descriptionEn": "You have it + Dota 2.",
+      "descriptionRu": "У тебя стоит + Dota 2.",
+      "wingetId": "Valve.Steam",
+      "category": "Gaming",
+      "profiles": [
+        "gaming"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/steam.svg"
+    },
+    {
+      "id": "gog",
+      "nameEn": "GOG Galaxy",
+      "nameRu": "GOG Galaxy",
+      "descriptionEn": "DRM-free games.",
+      "descriptionRu": "Игры без DRM.",
+      "wingetId": "GOG.Galaxy",
+      "category": "Gaming",
+      "profiles": [
+        "gaming"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/gog.svg"
+    },
+    {
+      "id": "epic",
+      "nameEn": "Epic Games Launcher",
+      "nameRu": "Epic Games",
+      "descriptionEn": "Free weekly games.",
+      "descriptionRu": "Бесплатные игры каждую неделю.",
+      "wingetId": "EpicGames.EpicGamesLauncher",
+      "category": "Gaming",
+      "profiles": [
+        "gaming",
+        "unity"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/epic.svg"
+    },
+    {
+      "id": "ea-app",
+      "nameEn": "EA App",
+      "nameRu": "EA App",
+      "descriptionEn": "Electronic Arts launcher.",
+      "descriptionRu": "Лаунчер Electronic Arts.",
+      "wingetId": "ElectronicArts.EADesktop",
+      "category": "Gaming",
+      "profiles": [
+        "gaming"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/ea-app.svg"
+    },
+    {
+      "id": "ubisoft",
+      "nameEn": "Ubisoft Connect",
+      "nameRu": "Ubisoft Connect",
+      "descriptionEn": "Ubisoft launcher.",
+      "descriptionRu": "Лаунчер Ubisoft.",
+      "wingetId": "Ubisoft.Connect",
+      "category": "Gaming",
+      "profiles": [
+        "gaming"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/ubisoft.svg"
+    },
+    {
+      "id": "playnite",
+      "nameEn": "Playnite",
+      "nameRu": "Playnite",
+      "descriptionEn": "Universal game library.",
+      "descriptionRu": "Единая библиотека игр.",
+      "wingetId": "Playnite.Playnite",
+      "category": "Gaming",
+      "profiles": [
+        "gaming"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "ds4",
+      "nameEn": "DS4Windows",
+      "nameRu": "DS4Windows",
+      "descriptionEn": "PlayStation controller on PC.",
+      "descriptionRu": "Геймпад PlayStation на ПК.",
+      "wingetId": "Ryochan7.DS4Windows",
+      "category": "Gaming",
+      "profiles": [
+        "gaming"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "rtss",
+      "nameEn": "RivaTuner Statistics Server",
+      "nameRu": "RivaTuner Statistics Server",
+      "descriptionEn": "FPS overlay. You have 7.3.7.",
+      "descriptionRu": "FPS-оверлей. У тебя 7.3.7.",
+      "wingetId": "Guru3D.RTSS",
+      "category": "Gaming",
+      "profiles": [
+        "gaming"
+      ],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "qbittorrent",
+      "nameEn": "qBittorrent",
+      "nameRu": "qBittorrent",
+      "descriptionEn": "Clean torrent client. You have 5.1.4.",
+      "descriptionRu": "Чистый торрент-клиент. У тебя 5.1.4.",
+      "wingetId": "qBittorrent.qBittorrent",
+      "category": "Network",
+      "profiles": [
+        "base"
+      ],
+      "isPopular": true,
+      "iconGlyph": "",
+      "icon": "icons/qbittorrent.svg"
+    },
+    {
+      "id": "amnezia",
+      "nameEn": "AmneziaVPN",
+      "nameRu": "AmneziaVPN",
+      "descriptionEn": "Self-hosted VPN. You have 4.8.",
+      "descriptionRu": "VPN со своим сервером. У тебя 4.8.",
+      "wingetId": "AmneziaVPN.AmneziaVPN",
+      "category": "Network",
+      "profiles": [
+        "base"
+      ],
+      "isPopular": true,
+      "iconGlyph": ""
+    },
+    {
+      "id": "tailscale",
+      "nameEn": "Tailscale",
+      "nameRu": "Tailscale",
+      "descriptionEn": "Zero-config mesh VPN.",
+      "descriptionRu": "Mesh-VPN без настройки.",
+      "wingetId": "Tailscale.Tailscale",
+      "category": "Network",
+      "profiles": [
+        "dotnet",
+        "web"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/tailscale.svg"
+    },
+    {
+      "id": "warp",
+      "nameEn": "Cloudflare WARP",
+      "nameRu": "Cloudflare WARP",
+      "descriptionEn": "Fast secure tunnel.",
+      "descriptionRu": "Быстрый защищенный туннель.",
+      "wingetId": "Cloudflare.Warp",
+      "category": "Network",
+      "profiles": [
+        "base"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/warp.svg"
+    },
+    {
+      "id": "wireshark",
+      "nameEn": "Wireshark",
+      "nameRu": "Wireshark",
+      "descriptionEn": "Network analyzer (you have Npcap 1.85).",
+      "descriptionRu": "Анализ сети (у тебя Npcap 1.85).",
+      "wingetId": "WiresharkFoundation.Wireshark",
+      "category": "Network",
+      "profiles": [
+        "dotnet"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/wireshark.svg"
+    },
+    {
+      "id": "netlimiter",
+      "nameEn": "NetLimiter",
+      "nameRu": "NetLimiter",
+      "descriptionEn": "Traffic control. You have 5.3.26.",
+      "descriptionRu": "Контроль трафика. У тебя 5.3.26.",
+      "wingetId": "LocktimeSoftware.NetLimiter",
+      "category": "Network",
+      "profiles": [],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "filezilla",
+      "nameEn": "FileZilla",
+      "nameRu": "FileZilla",
+      "descriptionEn": "FTP client.",
+      "descriptionRu": "FTP-клиент.",
+      "wingetId": "TimKosse.FileZilla.Client",
+      "category": "Network",
+      "profiles": [
+        "web"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/filezilla.svg"
+    },
+    {
+      "id": "angryip",
+      "nameEn": "Angry IP Scanner",
+      "nameRu": "Angry IP Scanner",
+      "descriptionEn": "LAN scanner.",
+      "descriptionRu": "Сканер локальной сети.",
+      "wingetId": "angryipscanner.angryipscanner",
+      "category": "Network",
+      "profiles": [],
+      "isPopular": false,
+      "iconGlyph": ""
+    },
+    {
+      "id": "vmware",
+      "nameEn": "VMware Workstation Pro",
+      "nameRu": "VMware Workstation Pro",
+      "descriptionEn": "Virtual machines. You have 26 (now free).",
+      "descriptionRu": "Виртуальные машины. У тебя 26 (теперь бесплатно).",
+      "wingetId": "VMware.WorkstationPro",
+      "category": "DevCore",
+      "profiles": [
+        "dotnet"
+      ],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/vmware.svg"
+    },
+    {
+      "id": "autocad",
+      "nameEn": "AutoCAD",
+      "nameRu": "AutoCAD",
+      "descriptionEn": "You have 2024 licensed — included for reinstalls.",
+      "descriptionRu": "У тебя 2024 по лицензии — включено для переустановки.",
+      "wingetId": "Autodesk.AutoCAD",
+      "category": "Design3D",
+      "profiles": [],
+      "isPopular": false,
+      "iconGlyph": "",
+      "icon": "icons/autocad.svg"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "base",
+      "nameEn": "Essential Base",
+      "nameRu": "База",
+      "iconGlyph": "",
+      "appIds": [
+        "7zip",
+        "powertoys",
+        "everything",
+        "notepadpp",
+        "terminal",
+        "powershell7",
+        "vcredist",
+        "chrome",
+        "vlc",
+        "qbittorrent",
+        "telegram",
+        "sharex",
+        "imageglass"
+      ]
+    },
+    {
+      "id": "web",
+      "nameEn": "Frontend / Web",
+      "nameRu": "Фронтенд",
+      "iconGlyph": "",
+      "appIds": [
+        "vscode",
+        "nodejs",
+        "git",
+        "gh-cli",
+        "chrome",
+        "figma",
+        "postman",
+        "bruno",
+        "dbeaver",
+        "docker",
+        "wsl",
+        "jetbrains-toolbox",
+        "starship",
+        "ripgrep",
+        "obsidian"
+      ]
+    },
+    {
+      "id": "dotnet",
+      "nameEn": ".NET Backend",
+      "nameRu": ".NET Бэкенд",
+      "iconGlyph": "",
+      "appIds": [
+        "vs-community",
+        "vscode",
+        "git",
+        "dotnet-sdk",
+        "docker",
+        "dbeaver",
+        "ssms",
+        "postman",
+        "linqpad",
+        "jetbrains-toolbox",
+        "wsl",
+        "cmake",
+        "go",
+        "rustup",
+        "tailscale",
+        "wireshark"
+      ]
+    },
+    {
+      "id": "python",
+      "nameEn": "Python & AI",
+      "nameRu": "Python и ИИ",
+      "iconGlyph": "",
+      "appIds": [
+        "python314",
+        "vscode",
+        "git",
+        "uv",
+        "ruff",
+        "docker",
+        "dbeaver",
+        "ollama",
+        "lmstudio",
+        "anaconda",
+        "pycharm",
+        "obsidian"
+      ]
+    },
+    {
+      "id": "unity",
+      "nameEn": "Unity Gamedev",
+      "nameRu": "Unity-разработка",
+      "iconGlyph": "",
+      "appIds": [
+        "unity-hub",
+        "unity6000",
+        "vs-community",
+        "vscode",
+        "git",
+        "git-lfs",
+        "blender",
+        "obs",
+        "audacity",
+        "gimp",
+        "godot",
+        "epic",
+        "discord"
+      ]
+    },
+    {
+      "id": "office",
+      "nameEn": "Office & Notes",
+      "nameRu": "Офис",
+      "iconGlyph": "",
+      "appIds": [
+        "libreoffice",
+        "foxit",
+        "telegram",
+        "zoom",
+        "thunderbird",
+        "obsidian",
+        "notion",
+        "powertoys",
+        "sharex",
+        "anydesk"
+      ]
+    },
+    {
+      "id": "gaming",
+      "nameEn": "Gaming & Media",
+      "nameRu": "Игры и медиа",
+      "iconGlyph": "",
+      "appIds": [
+        "steam",
+        "discord",
+        "obs",
+        "vlc",
+        "handbrake",
+        "gog",
+        "epic",
+        "playnite",
+        "rtss",
+        "eartrumpet",
+        "audacity",
+        "klite"
+      ]
+    }
+  ]
+}

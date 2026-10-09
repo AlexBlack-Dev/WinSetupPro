@@ -1,0 +1,37 @@
+## Build outputs
+bin/
+obj/
+out/
+publish/
+*.user
+*.suo
+.vs/
+TestResults/
+
+## WinUI / MSIX
+AppPackages/
+BundleArtifacts/
+*.msix
+*.msixbundle
+*.appx
+*.cer
+*.pfx
+
+## OS / Editor
+.DS_Store
+Thumbs.db
+desktop.ini
+
+## Secrets — never commit
+appsettings.*.json
+*.pfx
+
+## Rust / Tauri
+target/
+*.rs.bk
+
+## Node / Vite
+node_modules/
+dist/
+dist-ssr/
+*.local
