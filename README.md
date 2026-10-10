@@ -4,38 +4,43 @@
 
 Clean software setup for fresh Windows in one run. Pick a profile or select manually — everything installs silently from official vendor binaries. RU/EN UI.
 
-## Почему это чисто
-
-- Только `winget` (основное) + `scoop` (CLI-утилиты): официальные установщики вендоров, hash-проверка манифестов.
-- Флаги: `--silent --disable-interactivity --accept-package-agreements`. Никаких репаков, тулбаров и «попутных» программ.
-- Уже установленное пропускается (`winget list --exact`), очередь ставится строго последовательно.
-- Перед массовой установкой создаётся точка восстановления (best-effort).
-
 ## Стек
 
-- **WinUI 3** (Windows App SDK) + **.NET 10**, C# latest, unpackaged portable (без MSIX/сертификата)
-- MVVM: `CommunityToolkit.Mvvm`, DI: `Microsoft.Extensions.DependencyInjection`
-- Архитектура: `Shared` (DTO) → `Core` (интерфейсы, очередь, профили — чистый, без UI) → `Infra` (Winget/Scoop CLI, JSON-каталог, настройки) → `App` (WinUI)
-- Каталог: `catalog/catalog.json` — 115+ приложений, 7 редактируемых профилей
+- **Tauri 2 + React 19 + TypeScript + Vite + Zustand** — нативное окно (WebView2), крошечный бинарь, hot-reload
+- **Rust-бэкенд**: winget/scoop-движки, последовательная очередь со стримингом логов, каталог, настройки, точка восстановления
+- Дизайн-система в духе Spire: CSS-переменные, рантайм-акцент (blue/violet/teal), кастомный TitleBar, JetBrains Mono + Inter, lucide-иконки, framer-motion, тосты
+- Каталог: `catalog/catalog.json` — 124 приложения, 7 профилей, 82 бренд-иконки локально
 
-## Сборка и запуск
+## Почему это чисто
+
+- Только `winget` (основное) + `scoop` (CLI-утилиты): официальные установщики вендоров, hash-проверка манифестов
+- Флаги: `--silent --disable-interactivity --accept-package-agreements`. Никаких репаков, тулбаров и «попутных» программ
+- Уже установленное пропускается, очередь строго последовательна
+- Перед массовой установкой создаётся точка восстановления (best-effort)
+
+## Разработка
 
 ```powershell
-# Требования: Windows 10 21H2+/11, .NET 10 SDK
-dotnet build WinSetupPro.slnx -c Release -a x64
-dotnet test WinSetupPro.slnx
-# Запуск:
-.\src\WinSetupPro.App\bin\Release\net10.0-windows10.0.26100.0\win-x64\WinSetupPro.exe
+# Требования: Node 20+, Rust stable + MSVC, WebView2 (есть в Win11)
+cd desktop
+npm install
+npm run tauri dev     # запуск с hot-reload
+npm run build         # tsc && vite build
+npm run lint          # eslint, 0 ошибок
+npm run test          # vitest
+# Rust-тесты движка:
+cargo test --manifest-path src-tauri/Cargo.toml
 ```
 
-Пресеты хранятся в `%AppData%\WinSetupPro\settings.json`, свой каталог можно положить в `%AppData%\WinSetupPro\catalog.json` (перекроет встроенный).
+GUI запускается **без прав админа** (иначе WebView2 не стартует); для самой установки приложение попросит перезапуск как админ.
+
+Пресеты: `%AppData%\WinSetupPro\settings.json`. Свой каталог: `%AppData%\WinSetupPro\catalog.json` (+ `icons/` рядом) — перекроет встроенный.
 
 ## Защита (честно)
 
-Open-source (MIT). Уровень: честный — официального репозитория, подписанных релизов и проверки hash winget достаточно против подмен. Обфускация IL (ConfuserEx/BitMono) подключается на CI при желании; 100% защиты от реверса не существует.
+Open-source (MIT). Уровень: честный — официальный репозиторий, подписанные релизы и hash-проверка winget. 100% защиты от реверса не существует.
 
-## Roadmap
+## История
 
-- v0.2: версии/пины (`winget pin`), повторная проверка установленных, иконки из CDN
-- v0.3: автообновление через Velopack, экспорт `winget import` файла
-- v2: деблокировка Win11 (опционально), драйверы, твики
+- v0.1 — прототип на WinUI 3 + .NET 10 (сохранён в git-истории). Переход на Tauri ради скорости UI-разработки и качества интерфейса.
+- v0.2 — Tauri + React: движок портирован на Rust 1-в-1, добавлены тосты, выбор акцента, кастомный TitleBar.
