@@ -1,9 +1,8 @@
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { LayoutGrid, ListOrdered, Settings as SettingsIcon, HardDriveDownload } from "lucide-react";
+import { LayoutGrid, ListOrdered, Settings as SettingsIcon, HardDriveDownload, Gauge } from "lucide-react";
 import { useStore } from "./store/useStore";
 import { applyTheme } from "./store/helpers";
-import { APP_VERSION } from "./version";
 import { useT } from "./i18n/useT";
 import { api } from "./lib/api";
 import type { Tab } from "./types";
@@ -13,6 +12,7 @@ import Catalog from "./views/Catalog";
 import Queue from "./views/Queue";
 import Settings from "./views/Settings";
 import Installed from "./views/Installed";
+import Optimize from "./views/Optimize";
 
 export default function App() {
   const booted = useStore((s) => s.booted);
@@ -25,7 +25,6 @@ export default function App() {
   const syncQueue = useStore((s) => s.syncQueue);
   const handleEvent = useStore((s) => s.handleEvent);
   const t = useT();
-
   const bootedOnce = useRef(false);
   useEffect(() => {
     if (bootedOnce.current) return;
@@ -51,9 +50,10 @@ export default function App() {
         <div className="h-[52px] shrink-0" data-tauri-drag-region />
         <div className="flex flex-1 items-center justify-center">
           <motion.img
-            src="/applogo.png"
+            src="/logo-transparent.png"
             alt="WinSetupPro"
             className="size-20"
+            draggable={false}
             animate={{ opacity: [0.4, 1, 0.4], scale: [0.96, 1, 0.96] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
           />
@@ -76,6 +76,7 @@ export default function App() {
       icon: <HardDriveDownload size={16} />,
       badge: scanTotal > 0 ? scanTotal : undefined,
     },
+    { id: "optimize", label: t("optimize"), icon: <Gauge size={16} /> },
   ];
 
   return (
@@ -85,22 +86,10 @@ export default function App() {
         <span className="a2" />
         <span className="a3" />
       </div>
-      <TitleBar tab={tab} onNav={setTab} />
+      <TitleBar />
       <div className="relative z-[1] flex min-h-0 flex-1">
         {/* Sidebar */}
         <aside className="relative flex w-60 shrink-0 flex-col gap-1 border-r border-[var(--border)] bg-[var(--card)] p-4">
-          <div className="mb-2 flex items-center gap-2.5 px-2">
-            <img
-              src="/logo-transparent.png"
-              alt=""
-              draggable={false}
-              className="size-8 shrink-0 rounded-lg shadow"
-            />
-            <div>
-              <p className="text-[13px] font-semibold leading-tight">WinSetupPro</p>
-              <p className="text-[11px] leading-tight opacity-60">v{APP_VERSION}</p>
-            </div>
-          </div>
           {nav.map((n) => (
             <button
               key={n.id}
@@ -157,6 +146,7 @@ export default function App() {
               )}
               {tab === "queue" && <Queue onBack={() => setTab("catalog")} />}
               {tab === "installed" && <Installed />}
+              {tab === "optimize" && <Optimize />}
               {tab === "settings" && <Settings />}
             </motion.div>
           </AnimatePresence>

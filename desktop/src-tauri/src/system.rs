@@ -4,7 +4,7 @@ use tauri::State;
 use tokio::process::Command;
 use tokio::time::{timeout, Duration};
 
-fn shell_cmd() -> Command {
+pub(crate) fn shell_cmd() -> Command {
     if let Ok(pwsh) = std::env::var("WINSETUPPRO_SHELL") {
         if !pwsh.trim().is_empty() {
             return Command::new(pwsh);

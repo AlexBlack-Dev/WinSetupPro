@@ -121,8 +121,7 @@ pub fn load_catalog(handle: tauri::AppHandle) -> Result<CatalogPayload, String> 
     Err(last_err)
 }
 
-fn try_load_one(handle: &tauri::AppHandle, file: &Path) -> Result<CatalogPayload, String> {
-    let meta = std::fs::metadata(file).map_err(|e| format!("stat catalog: {e}"))?;
+fn try_load_one(handle: &tauri::AppHandle, file: &Path) -> Result<CatalogPayload, String> {    let meta = std::fs::metadata(file).map_err(|e| format!("stat catalog: {e}"))?;
     if meta.len() > 5_000_000 {
         return Err("catalog too large (>5MB)".to_string());
     }
@@ -151,6 +150,49 @@ fn try_load_one(handle: &tauri::AppHandle, file: &Path) -> Result<CatalogPayload
         apps,
         profiles: root.profiles,
     })
+}
+
+#[derive(Debug, Clone, serde::Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct CatalogMeta {
+    pub apps: usize,
+    pub profiles: usize,
+    pub updated_at: u64,
+}
+
+/// Lightweight freshness probe: counts + file mtime, no icon inlining.
+#[tauri::command]
+pub fn catalog_meta(handle: tauri::AppHandle) -> Result<CatalogMeta, String> {
+    let mut last_err = "catalog.json not found".to_string();
+    for file in candidates(&handle) {
+        if !file.is_file() {
+            continue;
+        }
+        let meta = std::fs::metadata(&file).map_err(|e| format!("stat catalog: {e}"))?;
+        if meta.len() > 5_000_000 {
+            last_err = "catalog too large".to_string();
+            continue;
+        }
+        let updated_at = meta
+            .modified()
+            .ok()
+            .and_then(|t| t.duration_since(std::time::UNIX_EPOCH).ok())
+            .map(|d| d.as_secs())
+            .unwrap_or(0);
+        let text = std::fs::read_to_string(&file).map_err(|e| format!("read catalog: {e}"))?;
+        let mut root: CatalogRoot =
+            serde_json::from_str(&text).map_err(|e| format!("parse catalog: {e}"))?;
+        if let Err(e) = validate_catalog(&mut root) {
+            last_err = e;
+            continue;
+        }
+        return Ok(CatalogMeta {
+            apps: root.apps.len(),
+            profiles: root.profiles.len(),
+            updated_at,
+        });
+    }
+    Err(last_err)
 }
 
 fn is_valid_app_id(id: &str) -> bool {
@@ -402,7 +444,9 @@ mod tests {
     fn versions_stay_in_sync() {
         let cargo = read_cargo_version();
         let tauri = repo_tauri_version();
+        let npm = read_npm_version();
         assert_eq!(cargo, tauri, "Cargo.toml vs tauri.conf.json");
+        assert_eq!(cargo, npm, "Cargo.toml vs package.json");
         assert_eq!(cargo, "0.2.0");
     }
 
@@ -439,6 +483,18 @@ mod tests {
         v.get("version")
             .and_then(|x| x.as_str())
             .expect("tauri version must exist")
+            .to_string()
+    }
+
+    fn read_npm_version() -> String {
+        let text = std::fs::read_to_string(
+            PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../package.json"),
+        )
+        .expect("package.json must exist");
+        let v: serde_json::Value = serde_json::from_str(&text).expect("package.json must parse");
+        v.get("version")
+            .and_then(|x| x.as_str())
+            .expect("npm version must exist")
             .to_string()
     }
 }

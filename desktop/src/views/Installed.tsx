@@ -3,10 +3,51 @@ import { motion } from "framer-motion";
 import { useStore } from "../store/useStore";
 import { useT } from "../i18n/useT";
 import { categoryName } from "../lib/tiles";
-import type { CatalogApp } from "../lib/api";
+import type { CatalogApp, JobStatus, UninstallItem } from "../lib/api";
+import { api } from "../lib/api";
+import { canUninstall, toUninstallItem } from "../lib/uninstall";
 import { AppTile, Btn, EmptyState } from "../components/ui";
 
-function InstalledCard({ app, version }: { app: CatalogApp; version: string }) {
+function waitForItem(id: string, timeoutMs: number): { promise: Promise<JobStatus>; cancel: () => void } {
+  let cancel = () => {};
+  const promise = new Promise<JobStatus>((resolve) => {
+    let done = false;
+    let unlisten: (() => void) | undefined;
+    const finish = (status: JobStatus) => {
+      if (done) return;
+      done = true;
+      window.clearTimeout(timer);
+      unlisten?.();
+      resolve(status);
+    };
+    cancel = () => finish("failed");
+    const timer = window.setTimeout(() => finish("failed"), timeoutMs);
+    void api.onInstallEvent((e) => {
+      if (done || e.type !== "status" || e.item !== id) return;
+      if (e.status === "succeeded" || e.status === "failed" || e.status === "cancelled" || e.status === "skipped") {
+        finish(e.status);
+      }
+    }).then((u) => {
+      unlisten = u;
+      if (done) u();
+    });
+  });
+  return { promise, cancel };
+}
+
+function InstalledCard({
+  app,
+  version,
+  uninstall,
+  busy,
+  onUninstall,
+}: {
+  app: CatalogApp;
+  version: string;
+  uninstall: UninstallItem | null;
+  busy: boolean;
+  onUninstall: (item: UninstallItem, displayName: string) => void;
+}) {
   const lang = useStore((s) => s.lang);
   const t = useT();
   return (
@@ -29,6 +70,15 @@ function InstalledCard({ app, version }: { app: CatalogApp; version: string }) {
           <span className="opacity-60"> · </span>
           {categoryName(app.category, lang)}
         </p>
+        {uninstall && (
+          <button
+            onClick={() => onUninstall(uninstall, lang === "ru" ? app.nameRu : app.nameEn)}
+            disabled={busy}
+            className="mt-1 h-7 shrink-0 rounded-lg px-2.5 text-xs font-semibold text-red-400 transition-all hover:bg-red-500/10 disabled:pointer-events-none disabled:opacity-40"
+          >
+            {busy ? t("uninstallBusy") : t("uninstall")}
+          </button>
+        )}
       </div>
     </div>
   );
@@ -39,12 +89,19 @@ function OtherRow({
   version,
   publisher,
   source,
+  uninstall,
+  busy,
+  onUninstall,
 }: {
   name: string;
   version: string;
   publisher: string;
   source: string;
+  uninstall: UninstallItem | null;
+  busy: boolean;
+  onUninstall: (item: UninstallItem, displayName: string) => void;
 }) {
+  const t = useT();
   return (
     <div className="vrow flex h-12 items-center gap-3 px-2">
       <p className="min-w-0 flex-1 truncate text-sm">{name}</p>
@@ -61,6 +118,15 @@ function OtherRow({
       <span className="w-16 shrink-0 text-right font-mono text-[11px] opacity-45">
         {source}
       </span>
+      {uninstall && canUninstall({ wingetId: uninstall.wingetId, uninstallString: uninstall.uninstallString }) && (
+        <button
+          onClick={() => onUninstall(uninstall, name)}
+          disabled={busy}
+          className="h-7 shrink-0 rounded-lg px-2.5 text-xs font-semibold text-red-400 transition-all hover:bg-red-500/10 disabled:pointer-events-none disabled:opacity-40"
+        >
+          {busy ? t("uninstallBusy") : t("uninstall")}
+        </button>
+      )}
     </div>
   );
 }
@@ -97,7 +163,7 @@ export default function Installed() {
     const byName = new Map(
       scan.apps.map((a) => [a.name.toLowerCase(), a]),
     );
-    const matched: { app: CatalogApp; version: string }[] = [];
+    const matched: { app: CatalogApp; version: string; uninstall: UninstallItem | null }[] = [];
     const used = new Set<string>();
     for (const app of apps) {
       const hit =
@@ -106,7 +172,17 @@ export default function Installed() {
         byName.get(app.nameEn.toLowerCase());
       if (hit) {
         used.add(hit.name.toLowerCase());
-        matched.push({ app, version: hit.version });
+        const uninstall =
+          app.wingetId || app.scoopName
+            ? toUninstallItem(
+                `uninstall:${app.id}`,
+                lang === "ru" ? app.nameRu : app.nameEn,
+                app.wingetId,
+                app.scoopName,
+                null,
+              )
+            : null;
+        matched.push({ app, version: hit.version, uninstall });
       }
     }
     const needle = dq.trim().toLowerCase();
@@ -121,6 +197,61 @@ export default function Installed() {
       ),
     };
   }, [scan, apps, lang, dq]);
+
+  const [busyId, setBusyId] = useState<string | null>(null);
+
+  const onUninstall = async (item: UninstallItem, displayName: string) => {
+    if (busyId) return;
+    if (!window.confirm(t("uninstallConfirm"))) return;
+    setBusyId(item.id);
+    const waiter = waitForItem(item.id, 600_000);
+    try {
+      await api.createRestorePoint().catch(() => false);
+      await api.startUninstall([item]);
+      const status = await waiter.promise;
+      if (status === "cancelled") {
+        toast(t("leftoversKept"), "info");
+        return;
+      }
+      if (status !== "succeeded") {
+        toast(t("uninstallFailed"), "err");
+      }
+      const hit = scan?.apps.find((a) => a.name === displayName);
+      const rep = await api
+        .scanLeftovers(displayName, hit?.publisher ?? "")
+        .catch(() => null);
+      if (rep && rep.registryKeys.length + rep.paths.length > 0) {
+        const detail = `${rep.registryKeys.length} registry, ${rep.paths.length} files`;
+        if (window.confirm(`${t("leftoversConfirm")} (${detail})`)) {
+          const removed = await api
+            .removeLeftovers(rep.registryKeys, rep.paths)
+            .catch(() => null);
+          if (removed) {
+            toast(
+              `${t("leftoversCleaned")} (${removed.removedRegistry}+${removed.removedPaths})`,
+              "ok",
+            );
+            if (removed.errors.length > 0) {
+              toast(removed.errors[0], "err");
+            }
+          } else {
+            toast(t("uninstallFailed"), "err");
+          }
+        } else {
+          toast(t("leftoversKept"), "info");
+        }
+      } else if (status === "succeeded") {
+        toast(t("uninstallDone"), "ok");
+      }
+      await scanSystem().catch(() => {});
+      useStore.getState().refreshInstalled();
+    } catch (e) {
+      waiter.cancel();
+      toast(String(e), "err");
+    } finally {
+      setBusyId(null);
+    }
+  };
 
   const onRefresh = async () => {
     try {
@@ -181,7 +312,14 @@ export default function Installed() {
               </h3>
               <div className="grid justify-center gap-4 [grid-template-columns:repeat(auto-fill,320px)]">
                 {matched.map((m) => (
-                  <InstalledCard key={m.app.id} app={m.app} version={m.version} />
+                  <InstalledCard
+                    key={m.app.id}
+                    app={m.app}
+                    version={m.version}
+                    uninstall={m.uninstall}
+                    busy={busyId !== null}
+                    onUninstall={onUninstall}
+                  />
                 ))}
               </div>
             </section>
@@ -192,15 +330,30 @@ export default function Installed() {
                 {t("otherApps")} · {rest.length}
               </h3>
               <div className="divide-y divide-[var(--border)]">
-                {rest.map((a) => (
-                  <OtherRow
-                    key={`${a.source}:${a.name}`}
-                    name={a.name}
-                    version={a.version}
-                    publisher={a.publisher}
-                    source={a.source}
-                  />
-                ))}
+                {rest.map((a) => {
+                  const u: UninstallItem | null =
+                    a.wingetId || a.uninstallString
+                      ? toUninstallItem(
+                          `uninstall:scan:${a.source}:${a.name}`,
+                          a.name,
+                          a.wingetId,
+                          null,
+                          a.uninstallString ?? null,
+                        )
+                      : null;
+                  return (
+                    <OtherRow
+                      key={`${a.source}:${a.name}`}
+                      name={a.name}
+                      version={a.version}
+                      publisher={a.publisher}
+                      source={a.source}
+                      uninstall={u}
+                      busy={busyId !== null}
+                      onUninstall={onUninstall}
+                    />
+                  );
+                })}
               </div>
             </section>
           )}

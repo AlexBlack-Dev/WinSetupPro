@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Question
+    url: https://github.com/AlexBlack-Dev/WinSetupPro/discussions
+    about: Questions and ideas — use Discussions, not issues

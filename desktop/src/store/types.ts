@@ -14,9 +14,10 @@ import type {
   Profile,
   ScanReport,
   SlimItem,
+  UpdateInfo,
 } from "../lib/api";
 
-export type { CatalogApp, InstallEvt, InstalledApp, Profile, ScanReport, SlimItem };
+export type { CatalogApp, InstallEvt, InstalledApp, Profile, ScanReport, SlimItem, UpdateInfo };
 
 export interface CatalogSlice {
   booted: boolean;
@@ -29,6 +30,8 @@ export interface CatalogSlice {
   /** Full PC inventory (winget + programs + store). Null until first scan. */
   scan: ScanReport | null;
   scanning: boolean;
+  /** mtime of the loaded catalog.json (unix seconds). Null until boot. */
+  catalogUpdatedAt: number | null;
   boot: () => Promise<void>;
   toggle: (id: string) => void;
   applyProfile: (profileId: string) => void;
@@ -59,6 +62,8 @@ export interface SettingsSlice {
   engines: { winget: boolean; scoop: boolean };
   needsAdmin: boolean;
   statusLine: string;
+  update: UpdateInfo | null;
+  checkingUpdate: boolean;
   setLang: (l: Lang) => void;
   setTheme: (t: string) => void;
   setAccent: (a: AccentId) => void;
@@ -67,6 +72,7 @@ export interface SettingsSlice {
   doRestorePoint: () => Promise<void>;
   exportPreset: () => Promise<void>;
   importPreset: () => Promise<void>;
+  checkUpdates: () => Promise<void>;
   setStatus: (s: string) => void;
 }
 

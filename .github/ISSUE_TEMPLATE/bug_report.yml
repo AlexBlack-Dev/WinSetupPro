@@ -1,0 +1,30 @@
+name: Bug report
+description: Something is broken
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      placeholder: 0.2.0
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Windows version
+      placeholder: Windows 11 23H2
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: What were you doing?
+      placeholder: Opened Installed tab, pressed Uninstall on …
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Log tail (Queue tab → log.txt, or %AppData%\WinSetupPro\logs)
+      render: text

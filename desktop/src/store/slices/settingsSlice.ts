@@ -1,4 +1,5 @@
 import { api } from "../../lib/api";
+import { APP_VERSION } from "../../version";
 import { ACCENTS, applyAccent, type AccentId, type Lang } from "../../types";
 import { translations } from "../../i18n/translations";
 import { byId, persist } from "../helpers";
@@ -14,6 +15,8 @@ export const createSettingsSlice: Slice<import("../types").SettingsSlice> = (
   engines: { winget: false, scoop: false },
   needsAdmin: false,
   statusLine: "",
+  update: null,
+  checkingUpdate: false,
 
   setLang: (lang: Lang) => {
     set({ lang });
@@ -106,4 +109,21 @@ export const createSettingsSlice: Slice<import("../types").SettingsSlice> = (
   },
 
   setStatus: (statusLine: string) => set({ statusLine }),
+
+  checkUpdates: async () => {
+    if (get().checkingUpdate) return;
+    set({ checkingUpdate: true, update: null });
+    try {
+      const update = await api.checkUpdate(APP_VERSION);
+      set({ update, checkingUpdate: false });
+      get().toast(
+        update.available ? `new: ${update.latest}` : "latest",
+        update.available ? "info" : "ok",
+      );
+    } catch (e) {
+      const msg = String(e);
+      set({ checkingUpdate: false });
+      get().toast(msg, "err");
+    }
+  },
 });

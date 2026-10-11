@@ -1,0 +1,25 @@
+name: App request
+description: Ask for a new app in the catalog
+labels: [catalog]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: App name
+      placeholder: OBS Studio
+    validations:
+      required: true
+  - type: input
+    id: winget
+    attributes:
+      label: winget id (if known, `winget search <name>`)
+      placeholder: OBSProject.OBSStudio
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: Official vendor installer, no repacks
+          required: true
+        - label: Silent install supported
+          required: false

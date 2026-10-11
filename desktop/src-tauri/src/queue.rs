@@ -10,6 +10,7 @@ use tauri::{AppHandle, Emitter, State};
 pub struct QueueState {
     pub handle: Arc<RunHandle>,
     pub running: Arc<AtomicBool>,
+    pub log_file: Arc<tokio::sync::Mutex<Option<std::path::PathBuf>>>,
 }
 
 impl QueueState {
@@ -17,6 +18,7 @@ impl QueueState {
         Self {
             handle: Arc::new(RunHandle::new()),
             running: Arc::new(AtomicBool::new(false)),
+            log_file: Arc::new(tokio::sync::Mutex::new(None)),
         }
     }
 }
@@ -87,6 +89,8 @@ pub async fn start_install(
     state.handle.reset();
     let st = state.inner().clone();
     let handle = st.handle.clone();
+    let log_file = st.log_file.clone();
+    *log_file.lock().await = crate::support::new_run_log();
 
     tokio::spawn(async move {
         let total = items.len();
@@ -113,7 +117,7 @@ pub async fn start_install(
                     progress: 0.0,
                 },
             );
-            run_one(&app, &handle, it).await;
+            run_one(&app, &handle, &log_file, it).await;
             done += 1;
             emit(&app, InstallEvent::Overall { done, total });
         }
@@ -123,10 +127,16 @@ pub async fn start_install(
     Ok(())
 }
 
-async fn run_one(app: &AppHandle, handle: &RunHandle, it: &InstallItem) {
+async fn run_one(
+    app: &AppHandle,
+    handle: &RunHandle,
+    log_file: &Arc<tokio::sync::Mutex<Option<std::path::PathBuf>>>,
+    it: &InstallItem,
+) {
     let app_clone = app.clone();
     let item_id = it.id.clone();
     let mut last_progress: f64 = 0.0;
+    let file_slot = log_file.clone();
     let log = |message: String| {
         let kind = if message.starts_with("ERR:") { "error" } else { "info" };
         emit(
@@ -137,6 +147,7 @@ async fn run_one(app: &AppHandle, handle: &RunHandle, it: &InstallItem) {
                 kind: kind.to_string(),
             },
         );
+        crate::support::append_run_log(&file_slot, &format!("[{}] {message}", it.id));
         if let Some(p) = parse_progress(&message) {
             if p >= last_progress {
                 last_progress = p;

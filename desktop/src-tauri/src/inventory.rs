@@ -9,6 +9,12 @@ pub struct InstalledApp {
     pub publisher: String,
     pub source: String,
     pub winget_id: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub uninstall_string: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub registry_key: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub install_location: Option<String>,
 }
 
 #[derive(Debug, Clone, Serialize)]
@@ -82,6 +88,9 @@ pub fn parse_winget_table(text: &str) -> Vec<InstalledApp> {
                 source
             },
             winget_id: Some(id),
+            uninstall_string: None,
+            registry_key: None,
+            install_location: None,
         });
     }
     out
@@ -140,12 +149,30 @@ fn registry_programs() -> Vec<InstalledApp> {
             if is_noise(system, &parent, &parent_display, &release) {
                 continue;
             }
+            let quiet: String = sub.get_value("QuietUninstallString").unwrap_or_default();
+            let normal: String = sub.get_value("UninstallString").unwrap_or_default();
+            let uninstall_string = if quiet.trim().is_empty() {
+                normal.trim().to_string()
+            } else {
+                quiet.trim().to_string()
+            };
+            let hive_name = if hive == HKEY_LOCAL_MACHINE { "HKLM" } else { "HKCU" };
             out.push(InstalledApp {
                 name: display,
                 version: sub.get_value("DisplayVersion").unwrap_or_default(),
                 publisher: sub.get_value("Publisher").unwrap_or_default(),
                 source: "programs".to_string(),
                 winget_id: None,
+                uninstall_string: if uninstall_string.is_empty() {
+                    None
+                } else {
+                    Some(uninstall_string)
+                },
+                registry_key: Some(format!("{hive_name}\\{path}\\{name}")),
+                install_location: match sub.get_value::<String, _>("InstallLocation") {
+                    Ok(loc) if !loc.trim().is_empty() => Some(loc),
+                    _ => None,
+                },
             });
         }
     }
@@ -214,6 +241,9 @@ async fn store_packages() -> Vec<InstalledApp> {
                 publisher: String::new(),
                 source: "store".to_string(),
                 winget_id: None,
+                uninstall_string: None,
+                registry_key: None,
+                install_location: None,
             })
         })
         .collect()

@@ -10,7 +10,7 @@ export type { CatalogApp, Category, EngineKind, JobStatus, Profile };
 export type Lang = "ru" | "en";
 export type AccentId = "blue" | "violet" | "teal";
 export type ThemeId = "system" | "dark" | "light";
-export type Tab = "catalog" | "queue" | "settings" | "installed";
+export type Tab = "catalog" | "queue" | "settings" | "installed" | "optimize";
 
 export interface Job {
   id: string;

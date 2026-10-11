@@ -1,0 +1,20 @@
+name: catalog-freshness
+on:
+  schedule:
+    - cron: 0 6 1 * *
+  workflow_dispatch:
+
+jobs:
+  age:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check catalog age
+        shell: pwsh
+        run: |
+          $ts = git log -1 --format=%ct -- catalog/catalog.json
+          $age = ([datetimeoffset]::FromUnixTimeSeconds([long]$ts).UtcDateTime - (Get-Date).ToUniversalTime()).TotalDays * -1
+          Write-Output "catalog age: $([math]::Round($age, 1)) days"
+          if ($age -gt 90) { Write-Error "catalog/catalog.json older than 90 days — curate the catalog"; exit 1 }

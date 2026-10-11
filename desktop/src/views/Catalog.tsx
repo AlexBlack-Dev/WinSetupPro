@@ -74,6 +74,7 @@ export default function Catalog({ onInstall }: { onInstall: () => void }) {
   const applyProfile = useStore((s) => s.applyProfile);
   const clearSelection = useStore((s) => s.clearSelection);
   const setSearch = useStore((s) => s.setSearch);
+  const catalogUpdatedAt = useStore((s) => s.catalogUpdatedAt);
 
   const [q, setQ] = useState("");
   const [dq, setDq] = useState("");
@@ -130,6 +131,8 @@ export default function Catalog({ onInstall }: { onInstall: () => void }) {
           </p>
           <p className="h-4 truncate text-xs opacity-60">
             {apps.length} {t("apps")} · {profiles.length} {t("profilesWord")}
+            {catalogUpdatedAt !== null &&
+              ` · ${t("catalogUpdated")} ${new Date(catalogUpdatedAt * 1000).toLocaleDateString(lang === "ru" ? "ru-RU" : "en-US")}`}
           </p>
         </div>
         <img

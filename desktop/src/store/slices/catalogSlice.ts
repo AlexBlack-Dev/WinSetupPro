@@ -19,10 +19,11 @@ export const createCatalogSlice: Slice<import("../types").CatalogSlice> = (
   installed: {},
   scan: null,
   scanning: false,
+  catalogUpdatedAt: null,
 
   boot: async () => {
     if (get().booted) return;
-    const [catalog, settings, engines, admin] = await Promise.all([
+    const [catalog, settings, engines, admin, meta] = await Promise.all([
       api.loadCatalog(),
       api.getSettings().catch(
         (): Settings => ({
@@ -35,6 +36,7 @@ export const createCatalogSlice: Slice<import("../types").CatalogSlice> = (
       ),
       api.checkEngines().catch(() => ({ winget: false, scoop: false })),
       api.isAdmin().catch(() => false),
+      api.catalogMeta().catch(() => null),
     ]);
     const lang = settings.Lang === "en" ? "en" : "ru";
     const accent: AccentId =
@@ -55,6 +57,7 @@ export const createCatalogSlice: Slice<import("../types").CatalogSlice> = (
       selected,
       engines,
       needsAdmin: !admin,
+      catalogUpdatedAt: meta?.updatedAt ?? null,
     });
     get().refreshInstalled();
   },

@@ -75,12 +75,113 @@ export interface InstalledApp {
   publisher: string;
   source: string;
   wingetId: string | null;
+  uninstallString?: string | null;
+  registryKey?: string | null;
+  installLocation?: string | null;
 }
 
 export interface ScanReport {
   apps: InstalledApp[];
   wingetIds: string[];
   total: number;
+}
+
+export interface UninstallItem {
+  id: string;
+  displayName: string;
+  wingetId: string | null;
+  scoopName: string | null;
+  uninstallString: string | null;
+}
+
+export interface LeftoverReport {
+  registryKeys: string[];
+  paths: string[];
+}
+
+export interface RemovedReport {
+  removedRegistry: number;
+  removedPaths: number;
+  errors: string[];
+}
+
+export interface DiskInfo {
+  name: string;
+  totalGb: number;
+  freeGb: number;
+}
+
+export interface SystemInfo {
+  cpu: string;
+  cores: number;
+  ramTotalGb: number;
+  ramFreeGb: number;
+  os: string;
+  uptimeHours: number;
+  gpus: string[];
+  disks: DiskInfo[];
+}
+
+export interface ProcInfo {
+  name: string;
+  pid: number;
+  cpu: number;
+  ramMb: number;
+  company: string;
+  path: string;
+  suspicious: boolean;
+  reason: string;
+}
+
+export interface StartupEntry {
+  source: string;
+  name: string;
+  command: string;
+  location: string;
+}
+
+export interface DefenderStatus {
+  available: boolean;
+  realtime: boolean;
+  signaturesOk: boolean;
+  detail: string;
+}
+
+export interface TempTarget {
+  id: string;
+  path: string;
+  mb: number;
+}
+
+export interface CleanReport {
+  removedFiles: number;
+  freedMb: number;
+  errors: string[];
+}
+
+export interface TweakInfo {
+  id: string;
+  needsAdmin: boolean;
+}
+
+export interface UpdateInfo {
+  latest: string;
+  notes: string;
+  url: string;
+  available: boolean;
+}
+
+export interface CatalogMeta {
+  apps: number;
+  profiles: number;
+  updatedAt: number;
+}
+
+export interface StartupBackupMeta {
+  file: string;
+  name: string;
+  location: string;
+  deletedAt: string;
 }
 
 export const api = {
@@ -100,6 +201,29 @@ export const api = {
     invoke("export_preset", { path, ids }),
   importPreset: (path: string) => invoke<string[]>("import_preset", { path }),
   scanInstalled: () => invoke<ScanReport>("scan_installed"),
+  startUninstall: (items: UninstallItem[]) => invoke("start_uninstall", { items }),
+  scanLeftovers: (displayName: string, publisher: string) =>
+    invoke<LeftoverReport>("scan_leftovers", { displayName, publisher }),
+  removeLeftovers: (registryKeys: string[], paths: string[]) =>
+    invoke<RemovedReport>("remove_leftovers", { registryKeys, paths }),
+  systemInfo: () => invoke<SystemInfo>("system_info"),
+  listProcesses: () => invoke<ProcInfo[]>("list_processes"),
+  killProcess: (pid: number) => invoke<string>("kill_process", { pid }),
+  listStartup: () => invoke<StartupEntry[]>("list_startup"),
+  disableStartup: (location: string, name: string) =>
+    invoke("disable_startup", { location, name }),
+  listStartupBackups: () => invoke<StartupBackupMeta[]>("list_startup_backups"),
+  restoreStartupBackup: (file: string) => invoke("restore_startup_backup", { file }),
+  defenderStatus: () => invoke<DefenderStatus>("defender_status"),
+  diskTemps: () => invoke<TempTarget[]>("disk_temps"),
+  cleanTemps: (ids: string[]) => invoke<CleanReport>("clean_temps", { ids }),
+  listTweaks: () => invoke<TweakInfo[]>("list_tweaks"),
+  tweakStatus: (id: string) => invoke<boolean>("tweak_status", { id }),
+  applyTweak: (id: string) => invoke("apply_tweak", { id }),
+  revertTweak: (id: string) => invoke("revert_tweak", { id }),
+  checkUpdate: (current: string) => invoke<UpdateInfo>("check_update", { current }),
+  openLogsDir: () => invoke<string>("open_logs_dir"),
+  catalogMeta: () => invoke<CatalogMeta>("catalog_meta"),
   onInstallEvent: (cb: (e: InstallEvt) => void): Promise<UnlistenFn> =>
     listen<InstallEvt>("install-event", (ev) => cb(ev.payload)),
 };
