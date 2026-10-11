@@ -69,9 +69,13 @@ export default function Catalog({ onInstall }: { onInstall: () => void }) {
   const lang = useStore((s) => s.lang);
   const t = useT();
   const apps = useStore((s) => s.apps);
-  const profiles = useStore((s) => s.profiles);
   const selected = useStore((s) => s.selected);
-  const applyProfile = useStore((s) => s.applyProfile);
+  const customProfiles = useStore((s) => s.customProfiles);
+  const applyCustomProfile = useStore((s) => s.applyCustomProfile);
+  const createProfile = useStore((s) => s.createProfile);
+  const renameProfile = useStore((s) => s.renameProfile);
+  const overwriteProfile = useStore((s) => s.overwriteProfile);
+  const deleteProfile = useStore((s) => s.deleteProfile);
   const clearSelection = useStore((s) => s.clearSelection);
   const setSearch = useStore((s) => s.setSearch);
   const catalogUpdatedAt = useStore((s) => s.catalogUpdatedAt);
@@ -130,7 +134,7 @@ export default function Catalog({ onInstall }: { onInstall: () => void }) {
             </AnimatePresence>
           </p>
           <p className="h-4 truncate text-xs opacity-60">
-            {apps.length} {t("apps")} · {profiles.length} {t("profilesWord")}
+            {apps.length} {t("apps")}
             {catalogUpdatedAt !== null &&
               ` · ${t("catalogUpdated")} ${new Date(catalogUpdatedAt * 1000).toLocaleDateString(lang === "ru" ? "ru-RU" : "en-US")}`}
           </p>
@@ -150,24 +154,66 @@ export default function Catalog({ onInstall }: { onInstall: () => void }) {
         className="h-10 w-full border-b border-[var(--border)] bg-transparent px-1 text-sm outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[var(--accent)]"
       />
 
-      {/* Profiles — borderless chips, fixed height */}
+      {/* My configs — create, apply, overwrite, rename, delete */}
       <section className="space-y-2">
         <h3 className="text-[11px] font-bold tracking-[0.09em] whitespace-nowrap text-[var(--muted)] uppercase">
-          {t("profile")}
+          {t("myConfigs")}
         </h3>
-        <div className="flex h-9 items-center gap-2 overflow-x-auto">
-          {profiles.map((p) => (
-            <button
-              key={p.id}
-              onClick={() => applyProfile(p.id)}
-              className="metal h-8 shrink-0 rounded-lg px-3.5 text-sm whitespace-nowrap transition-all hover:-translate-y-px hover:bg-[var(--hover)] active:translate-y-0"
-            >
-              {lang === "ru" ? p.nameRu : p.nameEn}
-              <span className="opacity-60"> · {p.appIds.length}</span>
-            </button>
-          ))}
-        </div>
+        {customProfiles.length === 0 ? (
+          <p className="truncate text-sm opacity-60">{t("configEmpty")}</p>
+        ) : (
+          <div className="divide-y divide-[var(--border)]">
+            {customProfiles.map((p) => (
+              <div key={p.Id} className="vrow flex h-12 items-center gap-2 px-2">
+                <button
+                  onClick={() => applyCustomProfile(p.Id)}
+                  className="min-w-0 flex-1 truncate text-left text-sm font-semibold hover:text-[var(--accent)]"
+                  title={`${p.AppIds.length}`}
+                >
+                  {p.Name}
+                  <span className="opacity-60"> · {p.AppIds.length}</span>
+                </button>
+                <button
+                  onClick={() => overwriteProfile(p.Id)}
+                  disabled={selectedCount === 0}
+                  title={t("overwrite")}
+                  className="h-7 shrink-0 rounded-lg px-2 text-xs opacity-70 transition-all hover:bg-[var(--hover)] hover:opacity-100 disabled:pointer-events-none disabled:opacity-30"
+                >
+                  {t("overwrite")}
+                </button>
+                <button
+                  onClick={() => {
+                    const name = window.prompt(t("configName"), p.Name);
+                    if (name !== null) renameProfile(p.Id, name);
+                  }}
+                  title={t("rename")}
+                  className="h-7 shrink-0 rounded-lg px-2 text-xs opacity-70 transition-all hover:bg-[var(--hover)] hover:opacity-100"
+                >
+                  {t("rename")}
+                </button>
+                <button
+                  onClick={() => {
+                    if (window.confirm(p.Name)) deleteProfile(p.Id);
+                  }}
+                  title={t("remove")}
+                  className="h-7 shrink-0 rounded-lg px-2 text-xs font-semibold text-red-400 opacity-80 transition-all hover:bg-red-500/10 hover:opacity-100"
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
         <div className="flex h-9 items-center gap-2">
+          <Btn
+            onClick={() => {
+              const name = window.prompt(t("configName"), "");
+              if (name !== null) createProfile(name);
+            }}
+            disabled={selectedCount === 0}
+          >
+            {t("saveConfig")}
+          </Btn>
           <Btn onClick={clearSelection}>{t("clearSelection")}</Btn>
           <Magnetic strength={4}>
             <div className="beam min-w-60">

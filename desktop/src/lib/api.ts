@@ -43,12 +43,19 @@ export interface ProfileEdit {
   Removed: string[];
 }
 
+export interface CustomProfile {
+  Id: string;
+  Name: string;
+  AppIds: string[];
+}
+
 export interface Settings {
   Lang: string;
   Theme: string;
   Accent: string;
   SelectedIds: string[];
   ProfileEdits: Record<string, ProfileEdit>;
+  CustomProfiles: CustomProfile[];
 }
 
 export type JobStatus =
@@ -200,6 +207,9 @@ export const api = {
   exportPreset: (path: string, ids: string[]) =>
     invoke("export_preset", { path, ids }),
   importPreset: (path: string) => invoke<string[]>("import_preset", { path }),
+  getCustomProfiles: () => invoke<CustomProfile[]>("get_custom_profiles"),
+  saveCustomProfiles: (profiles: CustomProfile[]) =>
+    invoke("save_custom_profiles", { profiles }),
   scanInstalled: () => invoke<ScanReport>("scan_installed"),
   startUninstall: (items: UninstallItem[]) => invoke("start_uninstall", { items }),
   scanLeftovers: (displayName: string, publisher: string) =>

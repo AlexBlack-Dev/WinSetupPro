@@ -1,6 +1,6 @@
 # WinSetupPro
 
-Чистая установка софта на свежий Windows за один запуск. Выбери профиль (База, Фронтенд, .NET, Python/ИИ, Unity, Офис, Игры) или отметь приложения вручную — всё встанет тихо, официально и без мусора.
+Чистая установка софта на свежий Windows за один запуск. Отметь приложения вручную или собери свой конфиг — всё встанет тихо, официально и без мусора.
 
 ## Скриншоты
 
@@ -9,14 +9,14 @@
 ![Оптимизация](docs/screenshots/optimize.png)
 ![Настройки](docs/screenshots/settings.png)
 
-Clean software setup for fresh Windows in one run. Pick a profile or select manually — everything installs silently from official vendor binaries. RU/EN UI.
+Clean software setup for fresh Windows in one run. Select manually or build your own config — everything installs silently from official vendor binaries. RU/EN UI.
 
 ## Стек
 
 - **Tauri 2 + React 19 + TypeScript + Vite + Zustand** — нативное окно (WebView2), крошечный бинарь, hot-reload
 - **Rust-бэкенд**: winget/scoop-движки, последовательная очередь со стримингом логов, каталог, настройки, точка восстановления
 - Дизайн-система в духе Spire: CSS-переменные, рантайм-акцент (blue/violet/teal), кастомный TitleBar, JetBrains Mono + Inter, lucide-иконки, framer-motion, тосты
-- Каталог: `catalog/catalog.json` — 124 приложения, 7 профилей, 82 бренд-иконки локально
+- Каталог: `catalog/catalog.json` — 124 приложения, свои конфиги вместо готовых профилей, 82 бренд-иконки локально
 - Оптимизатор: анализатор ПК (железо, процессы, автозагрузка, Defender-гигиена, мусор), полное удаление в духе Revo, 5 обратимых твиков
 
 ## Почему это чисто

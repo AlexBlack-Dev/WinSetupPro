@@ -30,6 +30,7 @@ export function toSettings(
     Accent: accent,
     SelectedIds: Object.keys(selected),
     ProfileEdits: {},
+    CustomProfiles: [],
   };
 }
 
@@ -40,7 +41,9 @@ export async function persist(
   selected: Record<string, true>,
 ): Promise<void> {
   try {
-    await api.saveSettings(toSettings(lang, theme, accent, selected));
+    const cur = await api.getSettings().catch(() => null);
+    const base = toSettings(lang, theme, accent, selected);
+    await api.saveSettings({ ...base, CustomProfiles: cur?.CustomProfiles ?? [] });
   } catch {
     /* settings must never crash the app */
   }

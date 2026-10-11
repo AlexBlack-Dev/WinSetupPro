@@ -66,6 +66,8 @@ pub fn run() {
             settings::save_settings,
             settings::export_preset,
             settings::import_preset,
+            settings::get_custom_profiles,
+            settings::save_custom_profiles,
             check_engines,
             engine::check_installed,
             inventory::scan_installed,

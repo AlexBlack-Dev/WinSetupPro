@@ -361,7 +361,6 @@ mod tests {
     fn catalog_has_substantial_size() {
         let c = repo_catalog();
         assert!(c.apps.len() >= 100, "apps: {}", c.apps.len());
-        assert!(c.profiles.len() >= 6, "profiles: {}", c.profiles.len());
     }
 
     #[test]

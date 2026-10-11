@@ -139,6 +139,17 @@ pub struct ProfileEdit {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
+pub struct CustomProfile {
+    #[serde(default)]
+    pub id: String,
+    #[serde(default)]
+    pub name: String,
+    #[serde(default)]
+    pub app_ids: Vec<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "PascalCase")]
 pub struct AppSettings {
     #[serde(default)]
     pub lang: String,
@@ -150,6 +161,8 @@ pub struct AppSettings {
     pub selected_ids: Vec<String>,
     #[serde(default)]
     pub profile_edits: HashMap<String, ProfileEdit>,
+    #[serde(default)]
+    pub custom_profiles: Vec<CustomProfile>,
 }
 
 impl Default for AppSettings {
@@ -160,8 +173,17 @@ impl Default for AppSettings {
             accent: "blue".to_string(),
             selected_ids: Vec::new(),
             profile_edits: HashMap::new(),
+            custom_profiles: Vec::new(),
         }
     }
+}
+
+fn valid_custom_id(id: &str) -> bool {
+    !id.is_empty()
+        && id.len() <= 64
+        && id
+            .chars()
+            .all(|c| c.is_ascii_alphanumeric() || c == '-' || c == '_')
 }
 
 impl AppSettings {
@@ -179,6 +201,36 @@ impl AppSettings {
         }
         self.selected_ids.sort();
         self.selected_ids.dedup();
+        if self.custom_profiles.len() > 100 {
+            self.custom_profiles.truncate(100);
+        }
+        for p in &mut self.custom_profiles {
+            if !valid_custom_id(&p.id) {
+                p.id = String::new();
+            }
+            let mut name = p.name.trim().to_string();
+            if name.len() > 64 {
+                let mut end = 64;
+                while !name.is_char_boundary(end) {
+                    end -= 1;
+                }
+                name.truncate(end);
+            }
+            p.name = name;
+            p.app_ids.retain(|id| {
+                !id.is_empty()
+                    && id.len() <= 64
+                    && id.chars().all(|c| {
+                        c.is_ascii_lowercase() || c.is_ascii_digit() || c == '-' || c == '_'
+                    })
+            });
+            p.app_ids.sort();
+            p.app_ids.dedup();
+            if p.app_ids.len() > 2000 {
+                p.app_ids.truncate(2000);
+            }
+        }
+        self.custom_profiles.retain(|p| !p.id.is_empty() && !p.name.is_empty());
         self
     }
 }

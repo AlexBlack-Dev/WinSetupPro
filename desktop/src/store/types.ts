@@ -9,20 +9,20 @@ import type {
 } from "../types";
 import type {
   CatalogApp,
+  CustomProfile,
   InstallEvt,
   InstalledApp,
-  Profile,
   ScanReport,
   SlimItem,
   UpdateInfo,
 } from "../lib/api";
 
-export type { CatalogApp, InstallEvt, InstalledApp, Profile, ScanReport, SlimItem, UpdateInfo };
+export type { CatalogApp, CustomProfile, InstallEvt, InstalledApp, ScanReport, SlimItem, UpdateInfo };
 
 export interface CatalogSlice {
   booted: boolean;
   apps: CatalogApp[];
-  profiles: Profile[];
+  customProfiles: CustomProfile[];
   selected: Record<string, true>;
   search: string;
   /** appId -> true/false once checked; absent = unknown yet. */
@@ -34,7 +34,11 @@ export interface CatalogSlice {
   catalogUpdatedAt: number | null;
   boot: () => Promise<void>;
   toggle: (id: string) => void;
-  applyProfile: (profileId: string) => void;
+  applyCustomProfile: (profileId: string) => void;
+  createProfile: (name: string) => void;
+  renameProfile: (profileId: string, name: string) => void;
+  overwriteProfile: (profileId: string) => void;
+  deleteProfile: (profileId: string) => void;
   clearSelection: () => void;
   setSearch: (q: string) => void;
   refreshInstalled: () => void;

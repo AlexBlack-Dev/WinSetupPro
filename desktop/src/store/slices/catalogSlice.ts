@@ -1,4 +1,4 @@
-import { api, type Settings } from "../../lib/api";
+import { api, type CustomProfile, type Settings } from "../../lib/api";
 import { applyAccent, type AccentId } from "../../types";
 import { byId, persist } from "../helpers";
 import type { Slice } from "../types";
@@ -7,23 +7,29 @@ export interface CatalogSliceState {
   booted: boolean;
 }
 
+function syncProfiles(profiles: CustomProfile[]): void {
+  api.saveCustomProfiles(profiles).catch((e: unknown) => {
+    console.error("profiles save failed", e);
+  });
+}
+
 export const createCatalogSlice: Slice<import("../types").CatalogSlice> = (
   set,
   get,
 ) => ({
   booted: false,
   apps: [],
-  profiles: [],
   selected: {},
   search: "",
   installed: {},
   scan: null,
   scanning: false,
   catalogUpdatedAt: null,
+  customProfiles: [],
 
   boot: async () => {
     if (get().booted) return;
-    const [catalog, settings, engines, admin, meta] = await Promise.all([
+    const [catalog, settings, engines, admin, meta, custom] = await Promise.all([
       api.loadCatalog(),
       api.getSettings().catch(
         (): Settings => ({
@@ -32,11 +38,13 @@ export const createCatalogSlice: Slice<import("../types").CatalogSlice> = (
           Accent: "blue",
           SelectedIds: [],
           ProfileEdits: {},
+          CustomProfiles: [],
         }),
       ),
       api.checkEngines().catch(() => ({ winget: false, scoop: false })),
       api.isAdmin().catch(() => false),
       api.catalogMeta().catch(() => null),
+      api.getCustomProfiles().catch(() => [] as CustomProfile[]),
     ]);
     const lang = settings.Lang === "en" ? "en" : "ru";
     const accent: AccentId =
@@ -46,6 +54,9 @@ export const createCatalogSlice: Slice<import("../types").CatalogSlice> = (
     const known = byId(catalog.apps);
     const selected: Record<string, true> = {};
     for (const id of settings.SelectedIds) if (known.has(id)) selected[id] = true;
+    const customProfiles = (custom ?? settings.CustomProfiles ?? []).filter(
+      (p) => p.Id && p.Name,
+    );
     applyAccent(accent);
     set({
       booted: true,
@@ -53,11 +64,11 @@ export const createCatalogSlice: Slice<import("../types").CatalogSlice> = (
       theme: settings.Theme || "system",
       accent,
       apps: catalog.apps,
-      profiles: catalog.profiles,
       selected,
       engines,
       needsAdmin: !admin,
       catalogUpdatedAt: meta?.updatedAt ?? null,
+      customProfiles,
     });
     get().refreshInstalled();
   },
@@ -71,16 +82,57 @@ export const createCatalogSlice: Slice<import("../types").CatalogSlice> = (
     void persist(lang, theme, accent, selected);
   },
 
-  applyProfile: (profileId) => {
-    const { apps, profiles } = get();
-    const profile = profiles.find((p) => p.id === profileId);
+  applyCustomProfile: (profileId) => {
+    const { apps, customProfiles } = get();
+    const profile = customProfiles.find((p) => p.Id === profileId);
     if (!profile) return;
     const known = byId(apps);
     const selected: Record<string, true> = {};
-    for (const id of profile.appIds) if (known.has(id)) selected[id] = true;
+    for (const id of profile.AppIds) if (known.has(id)) selected[id] = true;
     set({ selected });
     const { lang, theme, accent } = get();
     void persist(lang, theme, accent, selected);
+  },
+
+  createProfile: (name) => {
+    const clean = name.trim().slice(0, 64);
+    if (!clean) return;
+    const ids = Object.keys(get().selected);
+    if (ids.length === 0) return;
+    const profile: CustomProfile = {
+      Id: `cfg-${Date.now().toString(36)}`,
+      Name: clean,
+      AppIds: [...ids].sort(),
+    };
+    const customProfiles = [...get().customProfiles, profile];
+    set({ customProfiles });
+    syncProfiles(customProfiles);
+  },
+
+  renameProfile: (profileId, name) => {
+    const clean = name.trim().slice(0, 64);
+    if (!clean) return;
+    const customProfiles = get().customProfiles.map((p) =>
+      p.Id === profileId ? { ...p, Name: clean } : p,
+    );
+    set({ customProfiles });
+    syncProfiles(customProfiles);
+  },
+
+  overwriteProfile: (profileId) => {
+    const ids = Object.keys(get().selected);
+    if (ids.length === 0) return;
+    const customProfiles = get().customProfiles.map((p) =>
+      p.Id === profileId ? { ...p, AppIds: [...ids].sort() } : p,
+    );
+    set({ customProfiles });
+    syncProfiles(customProfiles);
+  },
+
+  deleteProfile: (profileId) => {
+    const customProfiles = get().customProfiles.filter((p) => p.Id !== profileId);
+    set({ customProfiles });
+    syncProfiles(customProfiles);
   },
 
   clearSelection: () => {

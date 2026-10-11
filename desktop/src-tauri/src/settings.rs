@@ -1,5 +1,5 @@
 use crate::catalog::data_dir;
-use crate::model::AppSettings;
+use crate::model::{AppSettings, CustomProfile};
 
 fn path() -> std::path::PathBuf {
     data_dir().join("settings.json")
@@ -73,4 +73,19 @@ pub fn import_preset(path: String) -> Result<Vec<String>, String> {
     clean.sort();
     clean.dedup();
     Ok(clean)
+}
+
+#[tauri::command]
+pub fn get_custom_profiles() -> Vec<CustomProfile> {
+    get_settings().custom_profiles
+}
+
+#[tauri::command]
+pub fn save_custom_profiles(profiles: Vec<CustomProfile>) -> Result<(), String> {
+    if profiles.len() > 100 {
+        return Err("too many profiles".to_string());
+    }
+    let mut s = get_settings();
+    s.custom_profiles = profiles;
+    save_settings(s)
 }
